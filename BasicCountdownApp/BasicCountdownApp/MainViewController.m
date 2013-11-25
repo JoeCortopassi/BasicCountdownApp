@@ -7,19 +7,25 @@
 //
 
 #import "MainViewController.h"
+#import "CountdownListViewController.h"
+
 
 @interface MainViewController ()
-
+@property (nonatomic, strong) UITableViewController *viewCountdownList;
 @end
+
+
+
 
 @implementation MainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
-        self.view.backgroundColor = [UIColor blueColor];
+        self.view.backgroundColor = [UIColor yellowColor];
     }
     return self;
 }
@@ -27,13 +33,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self setupViewCountdownList];
 }
 
-- (void)didReceiveMemoryWarning
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Setup Methods
+# pragma mark -
+/**************************************/
+- (void) setupViewCountdownList
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.viewCountdownList = [[CountdownListViewController alloc] init];
+    [self.view addSubview:self.viewCountdownList.tableView];
 }
+
+
 
 @end
