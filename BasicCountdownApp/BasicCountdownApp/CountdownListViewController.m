@@ -64,6 +64,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y < 0)
+    {
+        self.tableView.backgroundColor = [UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
+    }
+    else
+    {
+        self.tableView.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -166,17 +181,16 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (proposedDestinationIndexPath.row == 0)
+    {
+        return [NSIndexPath indexPathForRow:1 inSection:0];
+    }
+    
+    return proposedDestinationIndexPath;
 }
 
- */
 
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

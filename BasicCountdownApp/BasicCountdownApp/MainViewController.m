@@ -25,7 +25,7 @@
     if (self)
     {
         // Custom initialization
-        self.view.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
+        self.view.backgroundColor = [UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
     }
     return self;
 }
