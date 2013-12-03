@@ -59,19 +59,13 @@ typedef enum {
     if (self)
     {
         // Initialization code
+        self.backgroundColor = [UIColor whiteColor];
+        
         [self setupViewBackgroundImage];
         [self setupLabelTitle];
         [self setupLabelTimer];
         
         [self updateTimer];
-        
-        
-//        CGFloat bar = 45;
-//        UILabel *foo = [[UILabel alloc] init];
-//        foo.frame = CGRectMake(self.frame.size.width-bar, 0, bar, 80);
-//        foo.backgroundColor = [UIColor redColor];
-//        foo.text = @"";
-//        [self addSubview:foo];
     }
     
     
@@ -101,7 +95,7 @@ typedef enum {
 
 - (void) setupLabelTitle
 {
-    CGFloat inset = 5.0f;
+    CGFloat inset = 8.0f;
     
     self.labelTitle = [[UILabel alloc] init];
     self.labelTitle.frame = CGRectMake(inset, inset, [[UIScreen mainScreen] bounds].size.width - (inset*2), 40);
@@ -208,7 +202,7 @@ typedef enum {
 - (int) getRemainingTimeForTimeUnit:(TimeUnit)unit
 {
 #warning Temp hard code to make sure other parts work first
-    return 4444;
+    return rand() % (10 - 0) + 0;
 }
 
 
@@ -299,7 +293,10 @@ typedef enum {
     {
         // First timer/description combo
         
-        labelTimer.frame = CGRectMake(20, 45, 30, 30);
+        labelTimer.frame = CGRectMake(20,
+                                      50,
+                                      30,
+                                      30);
         labelTimer.hidden = NO;
 //        labelTimer.backgroundColor = [UIColor blueColor];
         [labelTimer sizeToFit];
@@ -308,12 +305,13 @@ typedef enum {
         labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
         labelTimerDescription.hidden = NO;
     }
-    else if (labelTimerPrevious.hidden == NO && labelTimerPrevious != nil)
+    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+
     {
         // Each additional timer/description combo
         
         labelTimer.frame = CGRectMake(0,
-                                      45,
+                                      50,
                                       30,
                                       30);
         [labelTimer sizeToFit];
@@ -334,6 +332,21 @@ typedef enum {
             
             return NO;
         }
+    }
+    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && [labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+        
+    {
+        labelTimer.frame = CGRectMake(labelTimerPrevious.frame.origin.x,
+                                      -200,
+                                      labelTimerPrevious.frame.size.width,
+                                      labelTimerPrevious.frame.size.height);
+        labelTimer.hidden = NO;
+        
+        labelTimerDescription.frame = CGRectMake(labelTimerPreviousDescription.frame.origin.x,
+                                      -200,
+                                      labelTimerPreviousDescription.frame.size.width,
+                                      labelTimerPreviousDescription.frame.size.height);
+        labelTimer.hidden = NO;
     }
     else
     {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226EA184E4D2800F19D5C /* ObjectTimer.m */; };
+		730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226ED184E9FED00F19D5C /* ObjectCountdown.m */; };
 		734CF85C183F263F003513E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85B183F263F003513E8 /* Foundation.framework */; };
 		734CF85E183F263F003513E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85D183F263F003513E8 /* CoreGraphics.framework */; };
 		734CF860183F263F003513E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85F183F263F003513E8 /* UIKit.framework */; };
@@ -40,6 +41,8 @@
 /* Begin PBXFileReference section */
 		730226E9184E4D2800F19D5C /* ObjectTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTimer.h; sourceTree = "<group>"; };
 		730226EA184E4D2800F19D5C /* ObjectTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTimer.m; sourceTree = "<group>"; };
+		730226EC184E9FED00F19D5C /* ObjectCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCountdown.h; sourceTree = "<group>"; };
+		730226ED184E9FED00F19D5C /* ObjectCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectCountdown.m; sourceTree = "<group>"; };
 		734CF858183F263F003513E8 /* BasicCountdownApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicCountdownApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734CF85B183F263F003513E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		734CF85D183F263F003513E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,6 +100,8 @@
 			children = (
 				730226E9184E4D2800F19D5C /* ObjectTimer.h */,
 				730226EA184E4D2800F19D5C /* ObjectTimer.m */,
+				730226EC184E9FED00F19D5C /* ObjectCountdown.h */,
+				730226ED184E9FED00F19D5C /* ObjectCountdown.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
 				73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */,
 				73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */,
+				730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */,
 				734CF86C183F263F003513E8 /* AppDelegate.m in Sources */,
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
 				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,
