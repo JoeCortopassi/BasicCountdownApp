@@ -37,7 +37,6 @@
                                               self.tableView.frame.size.height);
         }
         
-        NSLog(@"%0.2f -- %0.2f", self.view.bounds.origin.y, self.view.bounds.size.height);
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -123,7 +122,7 @@
             cell = [[CountdownTimerCell alloc] init];
         }
         
-        cell.textLabel.text = [NSString stringWithFormat:@"Cell #%ld", (long)indexPath.row];
+        //cell.textLabel.text = [NSString stringWithFormat:@"Cell #%ld", (long)indexPath.row];
     }
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226EA184E4D2800F19D5C /* ObjectTimer.m */; };
 		734CF85C183F263F003513E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85B183F263F003513E8 /* Foundation.framework */; };
 		734CF85E183F263F003513E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85D183F263F003513E8 /* CoreGraphics.framework */; };
 		734CF860183F263F003513E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85F183F263F003513E8 /* UIKit.framework */; };
@@ -20,6 +21,7 @@
 		734CF87F183F2640003513E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 734CF87D183F2640003513E8 /* InfoPlist.strings */; };
 		734CF881183F2640003513E8 /* BasicCountdownAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF880183F2640003513E8 /* BasicCountdownAppTests.m */; };
 		734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF88B183F2F3E003513E8 /* MainViewController.m */; };
+		7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7383DCF1184C15C5009C21B0 /* CountdownViewController.m */; };
 		73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C11842E343003A5218 /* CountdownListViewController.m */; };
 		73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C818431C53003A5218 /* CountdownTimerCell.m */; };
 		73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1CB18431CA6003A5218 /* CountdownListHeaderCell.m */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		730226E9184E4D2800F19D5C /* ObjectTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTimer.h; sourceTree = "<group>"; };
+		730226EA184E4D2800F19D5C /* ObjectTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTimer.m; sourceTree = "<group>"; };
 		734CF858183F263F003513E8 /* BasicCountdownApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicCountdownApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734CF85B183F263F003513E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		734CF85D183F263F003513E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,6 +58,8 @@
 		734CF880183F2640003513E8 /* BasicCountdownAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicCountdownAppTests.m; sourceTree = "<group>"; };
 		734CF88A183F2F3E003513E8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		734CF88B183F2F3E003513E8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		7383DCF0184C15C5009C21B0 /* CountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownViewController.h; sourceTree = "<group>"; };
+		7383DCF1184C15C5009C21B0 /* CountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownViewController.m; sourceTree = "<group>"; };
 		73C7A1C01842E343003A5218 /* CountdownListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownListViewController.h; sourceTree = "<group>"; };
 		73C7A1C11842E343003A5218 /* CountdownListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownListViewController.m; sourceTree = "<group>"; };
 		73C7A1C718431C53003A5218 /* CountdownTimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownTimerCell.h; sourceTree = "<group>"; };
@@ -86,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		730226E8184E4CFB00F19D5C /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				730226E9184E4D2800F19D5C /* ObjectTimer.h */,
+				730226EA184E4D2800F19D5C /* ObjectTimer.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		734CF84F183F263F003513E8 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +138,9 @@
 				734CF86B183F263F003513E8 /* AppDelegate.m */,
 				734CF88A183F2F3E003513E8 /* MainViewController.h */,
 				734CF88B183F2F3E003513E8 /* MainViewController.m */,
+				7383DCF0184C15C5009C21B0 /* CountdownViewController.h */,
+				7383DCF1184C15C5009C21B0 /* CountdownViewController.m */,
+				730226E8184E4CFB00F19D5C /* Objects */,
 				73C7A1C31842E34A003A5218 /* CountdownList */,
 				734CF86D183F263F003513E8 /* Images.xcassets */,
 				734CF862183F263F003513E8 /* Supporting Files */,
@@ -267,11 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
 				73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */,
 				73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */,
 				734CF86C183F263F003513E8 /* AppDelegate.m in Sources */,
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
+				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,
 				734CF868183F263F003513E8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
