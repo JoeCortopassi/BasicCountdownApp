@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ObjectCountdown.h"
 
 @interface CountdownTimerCell : UITableViewCell
-
+@property (nonatomic, strong) ObjectCountdown *countdown;
+- (void) updateTimer;
 @end

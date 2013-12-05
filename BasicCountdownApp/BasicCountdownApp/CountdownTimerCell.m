@@ -28,6 +28,7 @@ typedef enum {
 
 
 @interface CountdownTimerCell ()
+@property (nonatomic, strong) NSTimer *timerRefresh;
 @property (nonatomic, strong) UIImageView *viewBackgroundImage;
 @property (nonatomic, strong) UILabel *labelTitle;
 @property (nonatomic, strong) UILabel *labelTimerYears;
@@ -64,8 +65,6 @@ typedef enum {
         [self setupViewBackgroundImage];
         [self setupLabelTitle];
         [self setupLabelTimer];
-        
-        [self updateTimer];
     }
     
     
@@ -77,6 +76,25 @@ typedef enum {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+
+- (void)setAlpha:(CGFloat)alpha {
+    [super setAlpha:1.0f];
+}
+
+
+- (void) setCountdown:(ObjectCountdown *)newCountdown
+{
+    self.labelTitle.text = newCountdown.title;
+    _countdown = newCountdown;
+    
+    
+    self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                         target:self
+                                                       selector:@selector(updateTimer)
+                                                       userInfo:nil
+                                                        repeats:YES];
 }
 
 
@@ -186,22 +204,55 @@ typedef enum {
 
 - (void) updateTimer
 {
+    if (self.countdown == nil)
+    {
+        return;
+    }
+    
+    NSDateComponents *dateDifference = [self getDifferenceBetweenCountdownAndToday];
+    NSLog(@"%@", dateDifference);
     ObjectTimer *timer = [[ObjectTimer alloc] init];
-    timer.years   = [self getRemainingTimeForTimeUnit:kYears];
-    timer.months  = [self getRemainingTimeForTimeUnit:kMonths];
-    timer.weeks   = [self getRemainingTimeForTimeUnit:kWeeks];
-    timer.days    = [self getRemainingTimeForTimeUnit:kDays];
-    timer.hours   = [self getRemainingTimeForTimeUnit:kHours];
-    timer.minutes = [self getRemainingTimeForTimeUnit:kMinutes];
-    timer.seconds = [self getRemainingTimeForTimeUnit:kSeconds];
+    timer.years   = [dateDifference year];
+    timer.months  = [dateDifference month];
+    timer.weeks   = [dateDifference weekOfMonth];
+    timer.days    = [dateDifference day];
+    timer.hours   = [dateDifference hour];
+    timer.minutes = [dateDifference minute];
+    timer.seconds = [dateDifference second];
     
     [self displayTimerLabelsForTimer:timer];
 }
 
 
+- (NSDateComponents *) getDifferenceBetweenCountdownAndToday
+{
+    NSDate *toDateTime = self.countdown.dateOfEvent;
+    NSDate *fromDateTime = [NSDate date];
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:(NSYearCalendarUnit         |
+                                                         NSMonthCalendarUnit        |
+                                                         NSWeekOfMonthCalendarUnit  |
+                                                         NSDayCalendarUnit          |
+                                                         NSHourCalendarUnit         |
+                                                         NSMinuteCalendarUnit       |
+                                                         NSSecondCalendarUnit)
+                                               fromDate:fromDate toDate:toDate options:0];
+
+    return difference;
+}
+
+
 - (int) getRemainingTimeForTimeUnit:(TimeUnit)unit
 {
-#warning Temp hard code to make sure other parts work first
     return rand() % (10 - 0) + 0;
 }
 
@@ -219,74 +270,24 @@ typedef enum {
 }
 
 
+#warning This method is a mess. Needs to be refactored
 - (BOOL) displayTimerLabelForUnit:(TimeUnit)timeUnit andTimer:(ObjectTimer *)timer
 {
     UILabel *labelTimer;
+    [self getLabelTimer:&labelTimer forTimeUnit:timeUnit andAddTextFromTimer:timer];
+    
     UILabel *labelTimerDescription;
+    [self getLabelTimerDescription:&labelTimerDescription ForTimeUnit:timeUnit];
+    
     UILabel *labelTimerPrevious;
+    [self getLabelTimerPrevious:&labelTimerPrevious ForTimeUnit:timeUnit];
+    
     UILabel *labelTimerPreviousDescription;
+    [self getLabelTimerDescriptionPrevious:&labelTimerPreviousDescription ForTimeUnit:timeUnit];
+    
+    int refreshRate = [self refreshRateForTimeUnit:timeUnit];
     
     
-    if (timeUnit == kYears)
-    {
-        labelTimer = self.labelTimerYears;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.years];
-        labelTimerDescription = self.labelDescriptionYears;
-        labelTimerPrevious = nil;
-        labelTimerPreviousDescription = nil;
-    }
-    else if (timeUnit == kMonths)
-    {
-        labelTimer = self.labelTimerMonths;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.months];
-        labelTimerDescription = self.labelDescriptionMonths;
-        labelTimerPrevious = self.labelTimerYears;
-        labelTimerPreviousDescription = self.labelDescriptionYears;
-    }
-    else if (timeUnit == kWeeks)
-    {
-        labelTimer = self.labelTimerWeeks;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.weeks];
-        labelTimerDescription = self.labelDescriptionWeeks;
-        labelTimerPrevious = self.labelTimerMonths;
-        labelTimerPreviousDescription = self.labelDescriptionMonths;
-    }
-    else if (timeUnit == kDays)
-    {
-        labelTimer = self.labelTimerDays;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.days];
-        labelTimerDescription = self.labelDescriptionDays;
-        labelTimerPrevious = self.labelTimerWeeks;
-        labelTimerPreviousDescription = self.labelDescriptionWeeks;
-    }
-    else if (timeUnit == kHours)
-    {
-        labelTimer = self.labelTimerHours;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.hours];
-        labelTimerDescription = self.labelDescriptionHours;
-        labelTimerPrevious = self.labelTimerDays;
-        labelTimerPreviousDescription = self.labelDescriptionDays;
-    }
-    else if (timeUnit == kMinutes)
-    {
-        labelTimer = self.labelTimerMinutes;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.minutes];
-        labelTimerDescription = self.labelDescriptionMinutes;
-        labelTimerPrevious = self.labelTimerHours;
-        labelTimerPreviousDescription = self.labelDescriptionHours;
-    }
-    else if (timeUnit == kSeconds)
-    {
-        labelTimer = self.labelTimerSeconds;
-        labelTimer.text = [NSString stringWithFormat:@"%i", timer.seconds];
-        labelTimerDescription = self.labelDescriptionSeconds;
-        labelTimerPrevious = self.labelTimerMinutes;
-        labelTimerPreviousDescription = self.labelDescriptionMinutes;
-    }
-    else
-    {
-        // Do nothing
-    }
     
     
     if ((labelTimerPrevious.hidden == YES || labelTimerPrevious == nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
@@ -327,6 +328,7 @@ typedef enum {
         
         if ([self isOverflowedFrameForTimer:labelTimer orDescription:labelTimerDescription])
         {
+            // Last timer if they don't fit
             labelTimer.hidden = YES;
             labelTimerDescription.hidden = YES;
             
@@ -336,6 +338,7 @@ typedef enum {
     else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && [labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
         
     {
+        // Whatever timer in between the first and last one, that has a zero value and is thus hidden
         labelTimer.frame = CGRectMake(labelTimerPrevious.frame.origin.x,
                                       -200,
                                       labelTimerPrevious.frame.size.width,
@@ -347,11 +350,23 @@ typedef enum {
                                       labelTimerPreviousDescription.frame.size.width,
                                       labelTimerPreviousDescription.frame.size.height);
         labelTimer.hidden = NO;
+        
+        return YES;
     }
     else
     {
         
     }
+    
+    NSLog(@"refresh: %i", refreshRate);
+    
+    [self.timerRefresh invalidate];
+    self.timerRefresh = nil;
+    self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:refreshRate
+                                                         target:self
+                                                       selector:@selector(updateTimer)
+                                                       userInfo:nil
+                                                        repeats:YES];
     
     return YES;
 }
@@ -413,13 +428,192 @@ typedef enum {
     {
         return YES;
     }
-//    else if ((description.frame.origin.x + description.frame.size.width + rightMargin) > cellWidth)
-//    {
-//        return YES;
-//    }
     else
     {
         return NO;
     }
+}
+
+
+- (void) getLabelTimer:(UILabel **)labelTimer forTimeUnit:(TimeUnit)timeUnit andAddTextFromTimer:(ObjectTimer *)timer
+{
+    
+    if (timeUnit == kYears)
+    {
+        self.labelTimerYears.text = [NSString stringWithFormat:@"%i", timer.years];
+        *labelTimer = self.labelTimerYears;
+    }
+    else if (timeUnit == kMonths)
+    {
+        self.labelTimerMonths.text = [NSString stringWithFormat:@"%i", timer.months];
+        *labelTimer = self.labelTimerMonths;
+    }
+    else if (timeUnit == kWeeks)
+    {
+        self.labelTimerWeeks.text = [NSString stringWithFormat:@"%i", timer.weeks];
+        *labelTimer = self.labelTimerWeeks;
+    }
+    else if (timeUnit == kDays)
+    {
+        self.labelTimerDays.text = [NSString stringWithFormat:@"%i", timer.days];
+        *labelTimer = self.labelTimerDays;
+    }
+    else if (timeUnit == kHours)
+    {
+        self.labelTimerHours.text = [NSString stringWithFormat:@"%i", timer.hours];
+        *labelTimer = self.labelTimerHours;
+    }
+    else if (timeUnit == kMinutes)
+    {
+        self.labelTimerMinutes.text = [NSString stringWithFormat:@"%i", timer.minutes];
+        *labelTimer = self.labelTimerMinutes;
+    }
+    else if (timeUnit == kSeconds)
+    {
+        self.labelTimerSeconds.text = [NSString stringWithFormat:@"%i", timer.seconds];
+        *labelTimer = self.labelTimerSeconds;
+    }
+    else
+    {
+        // Error: Method called without a proper time unit given
+        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"Proper time unit not given");
+    }
+}
+
+
+- (void) getLabelTimerDescription:(UILabel **)labelTimerDescription ForTimeUnit:(TimeUnit) timeUnit
+{
+    if (timeUnit == kYears)
+    {
+        *labelTimerDescription = self.labelDescriptionYears;
+    }
+    else if (timeUnit == kMonths)
+    {
+        *labelTimerDescription = self.labelDescriptionMonths;
+    }
+    else if (timeUnit == kWeeks)
+    {
+        *labelTimerDescription = self.labelDescriptionWeeks;
+    }
+    else if (timeUnit == kDays)
+    {
+        *labelTimerDescription = self.labelDescriptionDays;
+    }
+    else if (timeUnit == kHours)
+    {
+        *labelTimerDescription = self.labelDescriptionHours;
+    }
+    else if (timeUnit == kMinutes)
+    {
+        *labelTimerDescription = self.labelDescriptionMinutes;
+    }
+    else if (timeUnit == kSeconds)
+    {
+        *labelTimerDescription = self.labelDescriptionSeconds;
+    }
+    else
+    {
+        // Error: Method called without a proper time unit given
+        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"Proper time unit not given");
+    }
+}
+
+
+- (void) getLabelTimerPrevious:(UILabel **)labelTimerPrevious ForTimeUnit:(TimeUnit)timeUnit
+{
+    if (timeUnit == kYears)
+    {
+        *labelTimerPrevious = nil;
+    }
+    else if (timeUnit == kMonths)
+    {
+        *labelTimerPrevious = self.labelTimerYears;
+    }
+    else if (timeUnit == kWeeks)
+    {
+        *labelTimerPrevious = self.labelTimerMonths;
+    }
+    else if (timeUnit == kDays)
+    {
+        *labelTimerPrevious = self.labelTimerWeeks;
+    }
+    else if (timeUnit == kHours)
+    {
+        *labelTimerPrevious = self.labelTimerDays;
+    }
+    else if (timeUnit == kMinutes)
+    {
+        *labelTimerPrevious = self.labelTimerHours;
+    }
+    else if (timeUnit == kSeconds)
+    {
+        *labelTimerPrevious = self.labelTimerMinutes;
+    }
+    else
+    {
+        // Error: Method called without a proper time unit given
+        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"Proper time unit not given");
+    }
+}
+
+
+- (void) getLabelTimerDescriptionPrevious:(UILabel **)labelTimerDescriptionPrevious ForTimeUnit:(TimeUnit)timeUnit
+{
+    if (timeUnit == kYears)
+    {
+        *labelTimerDescriptionPrevious = nil;
+    }
+    else if (timeUnit == kMonths)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionYears;
+    }
+    else if (timeUnit == kWeeks)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionMonths;
+    }
+    else if (timeUnit == kDays)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionWeeks;
+    }
+    else if (timeUnit == kHours)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionDays;
+    }
+    else if (timeUnit == kMinutes)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionHours;
+    }
+    else if (timeUnit == kSeconds)
+    {
+        *labelTimerDescriptionPrevious = self.labelDescriptionMinutes;
+    }
+    else
+    {
+        // Error: Method called without a proper time unit given
+        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"Proper time unit not given");
+    }
+}
+
+
+- (int) refreshRateForTimeUnit:(TimeUnit)timeUnit
+{
+    int refreshRate;
+    
+    if (timeUnit == kMinutes)
+    {
+        refreshRate = 15;
+    }
+    else if (timeUnit == kSeconds)
+    {
+        refreshRate = 1;
+    }
+    else
+    {
+        // default value
+        refreshRate = 120;
+    }
+    
+    
+    return refreshRate;
 }
 @end

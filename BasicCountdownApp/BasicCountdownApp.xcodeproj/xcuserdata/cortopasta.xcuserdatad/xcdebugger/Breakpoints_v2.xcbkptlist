@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicCountdownApp/CountdownTimerCell.m"
-            timestampString = "407805220.120718"
+            timestampString = "407910785.090671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-displayTimerLabelForUnit:andTimer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicCountdownApp/CountdownTimerCell.m"
-            timestampString = "407805220.120718"
+            timestampString = "407910785.090671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
             landmarkName = "-displayTimerLabelForUnit:andTimer:"
             landmarkType = "5">
          </BreakpointContent>

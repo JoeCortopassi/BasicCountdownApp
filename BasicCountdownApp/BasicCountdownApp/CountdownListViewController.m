@@ -9,6 +9,7 @@
 #import "CountdownListViewController.h"
 #import "CountdownListHeaderCell.h"
 #import "CountdownTimerCell.h"
+#import "ObjectCountdown.h"
 
 
 
@@ -78,7 +79,11 @@
 
 
 
-#pragma mark - Table view data source
+/**************************************/
+# pragma mark -
+# pragma mark Table view data source
+# pragma mark -
+/**************************************/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -122,7 +127,11 @@
             cell = [[CountdownTimerCell alloc] init];
         }
         
-        //cell.textLabel.text = [NSString stringWithFormat:@"Cell #%ld", (long)indexPath.row];
+        ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
+        countdown.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1387950323];
+        countdown.title = @"Foo Bar";
+        
+        [(CountdownTimerCell *)cell setCountdown:countdown];
     }
     
     

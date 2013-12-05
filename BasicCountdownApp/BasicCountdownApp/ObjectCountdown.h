@@ -11,4 +11,5 @@
 @interface ObjectCountdown : NSObject
 @property (nonatomic, strong) NSDate *dateOfEvent;
 @property (nonatomic, strong) UIImage *imageBackground;
+@property (nonatomic, strong) NSString *title;
 @end
