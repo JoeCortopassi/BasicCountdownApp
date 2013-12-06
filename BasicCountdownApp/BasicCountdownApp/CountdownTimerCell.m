@@ -89,12 +89,30 @@ typedef enum {
     self.labelTitle.text = newCountdown.title;
     _countdown = newCountdown;
     
-    
     self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                          target:self
                                                        selector:@selector(updateTimer)
                                                        userInfo:nil
                                                         repeats:YES];
+    
+    
+    
+    
+    
+    
+    NSDate *endingDate = newCountdown.dateOfEvent;
+    NSDate *startingDate = [NSDate date];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
+    NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:startingDate toDate:endingDate options:0];
+    
+    NSInteger days     = [dateComponents day];
+    NSInteger months   = [dateComponents month];
+    NSInteger years    = [dateComponents year];
+    NSInteger hours    = [dateComponents hour];
+    NSInteger minutes  = [dateComponents minute];
+    NSInteger seconds  = [dateComponents second];
 }
 
 
@@ -210,11 +228,11 @@ typedef enum {
     }
     
     NSDateComponents *dateDifference = [self getDifferenceBetweenCountdownAndToday];
-    NSLog(@"%@", dateDifference);
+
     ObjectTimer *timer = [[ObjectTimer alloc] init];
     timer.years   = [dateDifference year];
     timer.months  = [dateDifference month];
-    timer.weeks   = [dateDifference weekOfMonth];
+    timer.weeks   = 0;//[dateDifference weekOfMonth];
     timer.days    = [dateDifference day];
     timer.hours   = [dateDifference hour];
     timer.minutes = [dateDifference minute];
@@ -226,28 +244,35 @@ typedef enum {
 
 - (NSDateComponents *) getDifferenceBetweenCountdownAndToday
 {
-    NSDate *toDateTime = self.countdown.dateOfEvent;
-    NSDate *fromDateTime = [NSDate date];
-    NSDate *fromDate;
-    NSDate *toDate;
+//    NSDate *toDateTime = self.countdown.dateOfEvent;
+//    NSDate *fromDateTime = [NSDate date];
+//    NSDate *fromDate;
+//    NSDate *toDate;
+//    
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    
+//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+//                 interval:NULL forDate:fromDateTime];
+//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+//                 interval:NULL forDate:toDateTime];
+//    
+//    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
+//    
+//    NSDateComponents *difference = [calendar components:unitFlags
+//                                               fromDate:fromDate
+//                                                 toDate:toDate
+//                                                options:NSWrapCalendarComponents];
+//    
+    
+    NSDate *endingDate = self.countdown.dateOfEvent;
+    NSDate *startingDate = [NSDate date];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
+    NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:startingDate toDate:endingDate options:0];
     
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
-                 interval:NULL forDate:fromDateTime];
-    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
-                 interval:NULL forDate:toDateTime];
     
-    NSDateComponents *difference = [calendar components:(NSYearCalendarUnit         |
-                                                         NSMonthCalendarUnit        |
-                                                         NSWeekOfMonthCalendarUnit  |
-                                                         NSDayCalendarUnit          |
-                                                         NSHourCalendarUnit         |
-                                                         NSMinuteCalendarUnit       |
-                                                         NSSecondCalendarUnit)
-                                               fromDate:fromDate toDate:toDate options:0];
-
-    return difference;
+    return dateComponents;
 }
 
 
@@ -358,7 +383,6 @@ typedef enum {
         
     }
     
-    NSLog(@"refresh: %i", refreshRate);
     
     [self.timerRefresh invalidate];
     self.timerRefresh = nil;

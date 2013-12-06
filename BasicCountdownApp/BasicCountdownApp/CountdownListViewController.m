@@ -14,8 +14,11 @@
 
 
 @interface CountdownListViewController ()
-
+@property (nonatomic, strong) NSArray *arrayCountdowns;
 @end
+
+
+
 
 @implementation CountdownListViewController
 
@@ -26,6 +29,8 @@
         // Custom initialization
         self.tableView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
         self.tableView.frame = [[UIScreen mainScreen] applicationFrame];
+        
+        [self loadCountdownsFromModel];
         
         [self.tableView setEditing:YES];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -78,6 +83,36 @@
 }
 
 
+- (void) loadCountdownsFromModel
+{
+    ObjectCountdown *countdown1 = [[ObjectCountdown alloc] init];
+    countdown1.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1387929600];
+    countdown1.title = @"Christmas";
+    
+    ObjectCountdown *countdown2 = [[ObjectCountdown alloc] init];
+    countdown2.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1388534400];
+    countdown2.title = @"New Years";
+    
+    ObjectCountdown *countdown3 = [[ObjectCountdown alloc] init];
+    countdown3.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1392336000];
+    countdown3.title = @"Valentine's";
+    
+    ObjectCountdown *countdown4 = [[ObjectCountdown alloc] init];
+    countdown4.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1401062400];
+    countdown4.title = @"Memorial Day";
+    
+    ObjectCountdown *countdown5 = [[ObjectCountdown alloc] init];
+    countdown5.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1404432000];
+    countdown5.title = @"4th of July";
+    
+    ObjectCountdown *countdown6 = [[ObjectCountdown alloc] init];
+    countdown6.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1414713600];
+    countdown6.title = @"Halloween";
+    
+    self.arrayCountdowns = @[countdown1, countdown2, countdown3, countdown4, countdown5, countdown6];
+}
+
+
 
 /**************************************/
 # pragma mark -
@@ -87,16 +122,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 20;
+    return [self.arrayCountdowns count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,10 +160,7 @@
             cell = [[CountdownTimerCell alloc] init];
         }
         
-        ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
-        countdown.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1387950323];
-        countdown.title = @"Foo Bar";
-        
+        ObjectCountdown *countdown = [self.arrayCountdowns objectAtIndex:(indexPath.row-1)];
         [(CountdownTimerCell *)cell setCountdown:countdown];
     }
     
