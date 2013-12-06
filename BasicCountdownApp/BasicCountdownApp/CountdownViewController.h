@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ObjectCountdown.h"
+
 
 @interface CountdownViewController : UIViewController
-
+@property (nonatomic, strong) ObjectCountdown *countdown;
 @end

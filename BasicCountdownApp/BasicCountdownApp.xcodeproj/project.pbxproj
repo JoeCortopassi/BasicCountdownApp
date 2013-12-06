@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226EA184E4D2800F19D5C /* ObjectTimer.m */; };
 		730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226ED184E9FED00F19D5C /* ObjectCountdown.m */; };
+		731198F9185281AA00018C30 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198F8185281AA00018C30 /* Model.m */; };
+		731198FC1852820E00018C30 /* ModelCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198FB1852820E00018C30 /* ModelCountdown.m */; };
+		731199001852870500018C30 /* HelperTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198FF1852870500018C30 /* HelperTimer.m */; };
+		731199031852899E00018C30 /* LabelTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 731199021852899E00018C30 /* LabelTimer.m */; };
+		73119906185289B000018C30 /* LabelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 73119905185289B000018C30 /* LabelDescription.m */; };
 		734CF85C183F263F003513E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85B183F263F003513E8 /* Foundation.framework */; };
 		734CF85E183F263F003513E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85D183F263F003513E8 /* CoreGraphics.framework */; };
 		734CF860183F263F003513E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85F183F263F003513E8 /* UIKit.framework */; };
@@ -43,6 +48,17 @@
 		730226EA184E4D2800F19D5C /* ObjectTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTimer.m; sourceTree = "<group>"; };
 		730226EC184E9FED00F19D5C /* ObjectCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCountdown.h; sourceTree = "<group>"; };
 		730226ED184E9FED00F19D5C /* ObjectCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectCountdown.m; sourceTree = "<group>"; };
+		731198F4185247F500018C30 /* DelegateSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateSubView.h; sourceTree = "<group>"; };
+		731198F7185281AA00018C30 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		731198F8185281AA00018C30 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		731198FA1852820E00018C30 /* ModelCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCountdown.h; sourceTree = "<group>"; };
+		731198FB1852820E00018C30 /* ModelCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCountdown.m; sourceTree = "<group>"; };
+		731198FE1852870500018C30 /* HelperTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTimer.h; sourceTree = "<group>"; };
+		731198FF1852870500018C30 /* HelperTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTimer.m; sourceTree = "<group>"; };
+		731199011852899E00018C30 /* LabelTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTimer.h; sourceTree = "<group>"; };
+		731199021852899E00018C30 /* LabelTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTimer.m; sourceTree = "<group>"; };
+		73119904185289B000018C30 /* LabelDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelDescription.h; sourceTree = "<group>"; };
+		73119905185289B000018C30 /* LabelDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelDescription.m; sourceTree = "<group>"; };
 		734CF858183F263F003513E8 /* BasicCountdownApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicCountdownApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734CF85B183F263F003513E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		734CF85D183F263F003513E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +122,47 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		731198F3185247BE00018C30 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				731198F4185247F500018C30 /* DelegateSubView.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		731198F5185253EB00018C30 /* Countdown Views */ = {
+			isa = PBXGroup;
+			children = (
+				7383DCF0184C15C5009C21B0 /* CountdownViewController.h */,
+				7383DCF1184C15C5009C21B0 /* CountdownViewController.m */,
+				731199011852899E00018C30 /* LabelTimer.h */,
+				731199021852899E00018C30 /* LabelTimer.m */,
+				73119904185289B000018C30 /* LabelDescription.h */,
+				73119905185289B000018C30 /* LabelDescription.m */,
+			);
+			name = "Countdown Views";
+			sourceTree = "<group>";
+		};
+		731198F618527A0100018C30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				731198F7185281AA00018C30 /* Model.h */,
+				731198F8185281AA00018C30 /* Model.m */,
+				731198FA1852820E00018C30 /* ModelCountdown.h */,
+				731198FB1852820E00018C30 /* ModelCountdown.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		731198FD185286CA00018C30 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				731198FE1852870500018C30 /* HelperTimer.h */,
+				731198FF1852870500018C30 /* HelperTimer.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		734CF84F183F263F003513E8 = {
 			isa = PBXGroup;
 			children = (
@@ -143,10 +200,12 @@
 				734CF86B183F263F003513E8 /* AppDelegate.m */,
 				734CF88A183F2F3E003513E8 /* MainViewController.h */,
 				734CF88B183F2F3E003513E8 /* MainViewController.m */,
-				7383DCF0184C15C5009C21B0 /* CountdownViewController.h */,
-				7383DCF1184C15C5009C21B0 /* CountdownViewController.m */,
-				730226E8184E4CFB00F19D5C /* Objects */,
+				731198F618527A0100018C30 /* Model */,
+				731198F5185253EB00018C30 /* Countdown Views */,
 				73C7A1C31842E34A003A5218 /* CountdownList */,
+				731198F3185247BE00018C30 /* Delegates */,
+				731198FD185286CA00018C30 /* Helpers */,
+				730226E8184E4CFB00F19D5C /* Objects */,
 				734CF86D183F263F003513E8 /* Images.xcassets */,
 				734CF862183F263F003513E8 /* Supporting Files */,
 			);
@@ -291,14 +350,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
+				731199031852899E00018C30 /* LabelTimer.m in Sources */,
+				731199001852870500018C30 /* HelperTimer.m in Sources */,
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
 				73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */,
 				73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */,
 				730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */,
 				734CF86C183F263F003513E8 /* AppDelegate.m in Sources */,
+				731198FC1852820E00018C30 /* ModelCountdown.m in Sources */,
+				73119906185289B000018C30 /* LabelDescription.m in Sources */,
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
 				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,
 				734CF868183F263F003513E8 /* main.m in Sources */,
+				731198F9185281AA00018C30 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

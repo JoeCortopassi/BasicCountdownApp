@@ -7,9 +7,11 @@
 //
 
 #import "CountdownTimerCell.h"
+#import "CountdownViewController.h"
+#import "LabelTimer.h"
+#import "LabelDescription.h"
 #import "ObjectTimer.h"
-
-
+#import "HelperTimer.h"
 
 
 
@@ -31,20 +33,21 @@ typedef enum {
 @property (nonatomic, strong) NSTimer *timerRefresh;
 @property (nonatomic, strong) UIImageView *viewBackgroundImage;
 @property (nonatomic, strong) UILabel *labelTitle;
-@property (nonatomic, strong) UILabel *labelTimerYears;
-@property (nonatomic, strong) UILabel *labelTimerMonths;
-@property (nonatomic, strong) UILabel *labelTimerWeeks;
-@property (nonatomic, strong) UILabel *labelTimerDays;
-@property (nonatomic, strong) UILabel *labelTimerHours;
-@property (nonatomic, strong) UILabel *labelTimerMinutes;
-@property (nonatomic, strong) UILabel *labelTimerSeconds;
-@property (nonatomic, strong) UILabel *labelDescriptionYears;
-@property (nonatomic, strong) UILabel *labelDescriptionMonths;
-@property (nonatomic, strong) UILabel *labelDescriptionWeeks;
-@property (nonatomic, strong) UILabel *labelDescriptionDays;
-@property (nonatomic, strong) UILabel *labelDescriptionHours;
-@property (nonatomic, strong) UILabel *labelDescriptionMinutes;
-@property (nonatomic, strong) UILabel *labelDescriptionSeconds;
+@property (nonatomic, strong) LabelTimer *labelTimerYears;
+@property (nonatomic, strong) LabelTimer *labelTimerMonths;
+@property (nonatomic, strong) LabelTimer *labelTimerWeeks;
+@property (nonatomic, strong) LabelTimer *labelTimerDays;
+@property (nonatomic, strong) LabelTimer *labelTimerHours;
+@property (nonatomic, strong) LabelTimer *labelTimerMinutes;
+@property (nonatomic, strong) LabelTimer *labelTimerSeconds;
+@property (nonatomic, strong) LabelDescription *labelDescriptionYears;
+@property (nonatomic, strong) LabelDescription *labelDescriptionMonths;
+@property (nonatomic, strong) LabelDescription *labelDescriptionWeeks;
+@property (nonatomic, strong) LabelDescription *labelDescriptionDays;
+@property (nonatomic, strong) LabelDescription *labelDescriptionHours;
+@property (nonatomic, strong) LabelDescription *labelDescriptionMinutes;
+@property (nonatomic, strong) LabelDescription *labelDescriptionSeconds;
+@property (nonatomic, strong) UIButton *buttonOverlay;
 @end
 
 
@@ -62,14 +65,22 @@ typedef enum {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         
-        [self setupViewBackgroundImage];
-        [self setupLabelTitle];
-        [self setupLabelTimer];
     }
     
     
     return self;
 }
+
+
+- (void) layoutSubviews
+{
+    [self setupViewBackgroundImage];
+    [self setupLabelTitle];
+    [self setupLabelTimer];
+    [self setupButtonOverlay];
+}
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -94,25 +105,6 @@ typedef enum {
                                                        selector:@selector(updateTimer)
                                                        userInfo:nil
                                                         repeats:YES];
-    
-    
-    
-    
-    
-    
-    NSDate *endingDate = newCountdown.dateOfEvent;
-    NSDate *startingDate = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
-    NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:startingDate toDate:endingDate options:0];
-    
-    NSInteger days     = [dateComponents day];
-    NSInteger months   = [dateComponents month];
-    NSInteger years    = [dateComponents year];
-    NSInteger hours    = [dateComponents hour];
-    NSInteger minutes  = [dateComponents minute];
-    NSInteger seconds  = [dateComponents second];
 }
 
 
@@ -135,9 +127,8 @@ typedef enum {
     
     self.labelTitle = [[UILabel alloc] init];
     self.labelTitle.frame = CGRectMake(inset, inset, [[UIScreen mainScreen] bounds].size.width - (inset*2), 40);
-//    self.labelTitle.backgroundColor = [UIColor orangeColor];
     [self.labelTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:45.0f]];
-    self.labelTitle.text = @"Christmas";
+    self.labelTitle.text = self.countdown.title;
     
     [self addSubview:self.labelTitle];
 }
@@ -146,70 +137,99 @@ typedef enum {
 - (void) setupLabelTimer
 {
     // Timers
-    self.labelTimerYears    = [self labelCreateGenericTimer];
-    self.labelTimerMonths   = [self labelCreateGenericTimer];
-    self.labelTimerWeeks    = [self labelCreateGenericTimer];
-    self.labelTimerDays     = [self labelCreateGenericTimer];
-    self.labelTimerHours    = [self labelCreateGenericTimer];
-    self.labelTimerMinutes  = [self labelCreateGenericTimer];
-    self.labelTimerSeconds  = [self labelCreateGenericTimer];
+    self.labelTimerYears    = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerYears];
+    
+    self.labelTimerMonths   = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerMonths];
+    
+    self.labelTimerWeeks    = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerWeeks];
+    
+    self.labelTimerDays     = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerDays];
+    
+    self.labelTimerHours    = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerHours];
+    
+    self.labelTimerMinutes  = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerMinutes];
+    
+    self.labelTimerSeconds  = [[LabelTimer alloc] init];
+    [self addSubview:self.labelTimerSeconds];
+    
     
     
     // Timer Descriptors
-    self.labelDescriptionYears          = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionYears          = [[LabelDescription alloc] init];
     self.labelDescriptionYears.text     = @"Years";
+    [self addSubview:self.labelDescriptionYears];
     
-    self.labelDescriptionMonths         = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionMonths         = [[LabelDescription alloc] init];
     self.labelDescriptionMonths.text    = @"Months";
+    [self addSubview:self.labelDescriptionMonths];
     
-    self.labelDescriptionWeeks          = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionWeeks          = [[LabelDescription alloc] init];
     self.labelDescriptionWeeks.text     = @"Weeks";
+    [self addSubview:self.labelDescriptionWeeks];
     
-    self.labelDescriptionDays           = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionDays           = [[LabelDescription alloc] init];
     self.labelDescriptionDays.text      = @"Days";
+    [self addSubview:self.labelDescriptionDays];
     
-    self.labelDescriptionHours          = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionHours          = [[LabelDescription alloc] init];
     self.labelDescriptionHours.text     = @"Hours";
+    [self addSubview:self.labelDescriptionHours];
     
-    self.labelDescriptionMinutes        = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionMinutes        = [[LabelDescription alloc] init];
     self.labelDescriptionMinutes.text   = @"Minutes";
+    [self addSubview:self.labelDescriptionMinutes];
     
-    self.labelDescriptionSeconds        = [self labelCreateGenericTimerDescription];
+    self.labelDescriptionSeconds        = [[LabelDescription alloc] init];
     self.labelDescriptionSeconds.text   = @"Seconds";
+    [self addSubview:self.labelDescriptionSeconds];
 }
 
+//
+//- (UILabel *) labelCreateGenericTimer
+//{
+//    UILabel *label = [[UILabel alloc] init];
+//    label.frame = CGRectMake(0, 0, 0, 0);
+//    label.textColor = [UIColor darkGrayColor];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:28.0f];
+//    label.text = @"0";
+//    label.hidden = YES;
+//    
+//    [self addSubview:label];
+//    
+//    return label;
+//}
+//
+//
+//- (UILabel *) labelCreateGenericTimerDescription
+//{
+//    UILabel *label = [[UILabel alloc] init];
+//    label.frame = CGRectMake(0, 0, 0, 0);
+//    label.textColor = [UIColor lightGrayColor];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:14.0f];
+//    label.text = @"";
+//    label.hidden = YES;
+//    
+//    [self addSubview:label];
+//    
+//    return label;
+//}
 
-- (UILabel *) labelCreateGenericTimer
+
+- (void) setupButtonOverlay
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 0, 0);
-//    label.backgroundColor = [UIColor yellowColor];
-    label.textColor = [UIColor darkGrayColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:28.0f];
-    label.text = @"0";
-    label.hidden = YES;
-    
-    [self addSubview:label];
-    
-    return label;
-}
-
-
-- (UILabel *) labelCreateGenericTimerDescription
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 0, 0);
-//    label.backgroundColor = [UIColor greenColor];
-    label.textColor = [UIColor lightGrayColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:14.0f];
-    label.text = @"";
-    label.hidden = YES;
-    
-    [self addSubview:label];
-    
-    return label;
+    self.buttonOverlay = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.buttonOverlay.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self.buttonOverlay setTitle:@"" forState:UIControlStateNormal];
+    [self.buttonOverlay addTarget:self action:@selector(buttonOverlaySelected) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.buttonOverlay];
 }
 
 
@@ -227,58 +247,7 @@ typedef enum {
         return;
     }
     
-    NSDateComponents *dateDifference = [self getDifferenceBetweenCountdownAndToday];
-
-    ObjectTimer *timer = [[ObjectTimer alloc] init];
-    timer.years   = [dateDifference year];
-    timer.months  = [dateDifference month];
-    timer.weeks   = 0;//[dateDifference weekOfMonth];
-    timer.days    = [dateDifference day];
-    timer.hours   = [dateDifference hour];
-    timer.minutes = [dateDifference minute];
-    timer.seconds = [dateDifference second];
-    
-    [self displayTimerLabelsForTimer:timer];
-}
-
-
-- (NSDateComponents *) getDifferenceBetweenCountdownAndToday
-{
-//    NSDate *toDateTime = self.countdown.dateOfEvent;
-//    NSDate *fromDateTime = [NSDate date];
-//    NSDate *fromDate;
-//    NSDate *toDate;
-//    
-//    NSCalendar *calendar = [NSCalendar currentCalendar];
-//    
-//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
-//                 interval:NULL forDate:fromDateTime];
-//    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
-//                 interval:NULL forDate:toDateTime];
-//    
-//    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
-//    
-//    NSDateComponents *difference = [calendar components:unitFlags
-//                                               fromDate:fromDate
-//                                                 toDate:toDate
-//                                                options:NSWrapCalendarComponents];
-//    
-    
-    NSDate *endingDate = self.countdown.dateOfEvent;
-    NSDate *startingDate = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit;
-    NSDateComponents *dateComponents = [calendar components:unitFlags fromDate:startingDate toDate:endingDate options:0];
-    
-    
-    return dateComponents;
-}
-
-
-- (int) getRemainingTimeForTimeUnit:(TimeUnit)unit
-{
-    return rand() % (10 - 0) + 0;
+    [self displayTimerLabelsForTimer:[HelperTimer getCountdownTimerForDate:self.countdown.dateOfEvent]];
 }
 
 
@@ -295,19 +264,18 @@ typedef enum {
 }
 
 
-#warning This method is a mess. Needs to be refactored
 - (BOOL) displayTimerLabelForUnit:(TimeUnit)timeUnit andTimer:(ObjectTimer *)timer
 {
-    UILabel *labelTimer;
+    LabelTimer *labelTimer;
     [self getLabelTimer:&labelTimer forTimeUnit:timeUnit andAddTextFromTimer:timer];
     
-    UILabel *labelTimerDescription;
+    LabelDescription *labelTimerDescription;
     [self getLabelTimerDescription:&labelTimerDescription ForTimeUnit:timeUnit];
     
-    UILabel *labelTimerPrevious;
+    LabelTimer *labelTimerPrevious;
     [self getLabelTimerPrevious:&labelTimerPrevious ForTimeUnit:timeUnit];
     
-    UILabel *labelTimerPreviousDescription;
+    LabelDescription *labelTimerPreviousDescription;
     [self getLabelTimerDescriptionPrevious:&labelTimerPreviousDescription ForTimeUnit:timeUnit];
     
     int refreshRate = [self refreshRateForTimeUnit:timeUnit];
@@ -351,7 +319,7 @@ typedef enum {
         labelTimer.frame = newTimerFrame;
         labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
         
-        if ([self isOverflowedFrameForTimer:labelTimer orDescription:labelTimerDescription])
+        if ([HelperTimer doesTimer:labelTimer orDescription:labelTimerDescription overflowForFrame:self.frame withMargin:45.0f])
         {
             // Last timer if they don't fit
             labelTimer.hidden = YES;
@@ -407,9 +375,7 @@ typedef enum {
     CGFloat previousDescriptionX = previousDescription.frame.origin.x;
     CGFloat previousDescriptionWidth = previousDescription.frame.size.width;
     
-    CGFloat timerX = timer.frame.origin.x;
     CGFloat timerWidth = timer.frame.size.width;
-    CGFloat descriptionX = description.frame.origin.x;
     CGFloat descriptionWidth = description.frame.size.width;
     
     
@@ -440,23 +406,23 @@ typedef enum {
                              timer.frame.size.width,
                              timer.frame.size.height);
 }
-
-
-- (BOOL) isOverflowedFrameForTimer:(UILabel *)timer orDescription:(UILabel *)description
-{
-    CGFloat rightMargin = 45.0f;
-    CGFloat cellWidth = self.frame.size.width;
-    
-    
-    if ((timer.frame.origin.x + timer.frame.size.width + rightMargin) > cellWidth)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-}
+//
+//
+//- (BOOL) isOverflowedFrameForTimer:(UILabel *)timer orDescription:(UILabel *)description
+//{
+//    CGFloat rightMargin = 45.0f;
+//    CGFloat cellWidth = self.frame.size.width;
+//    
+//    
+//    if ((timer.frame.origin.x + timer.frame.size.width + rightMargin) > cellWidth)
+//    {
+//        return YES;
+//    }
+//    else
+//    {
+//        return NO;
+//    }
+//}
 
 
 - (void) getLabelTimer:(UILabel **)labelTimer forTimeUnit:(TimeUnit)timeUnit andAddTextFromTimer:(ObjectTimer *)timer
@@ -625,7 +591,7 @@ typedef enum {
     
     if (timeUnit == kMinutes)
     {
-        refreshRate = 15;
+        refreshRate = 1;
     }
     else if (timeUnit == kSeconds)
     {
@@ -640,4 +606,14 @@ typedef enum {
     
     return refreshRate;
 }
+
+
+- (void) buttonOverlaySelected
+{
+    CountdownViewController *countdownVC = [[CountdownViewController alloc] init];
+    countdownVC.countdown = self.countdown;
+    
+    [self.delegateSubView pushViewController:countdownVC animated:YES];
+}
+
 @end

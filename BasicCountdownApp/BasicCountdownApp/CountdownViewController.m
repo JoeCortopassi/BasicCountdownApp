@@ -17,9 +17,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    
+    if (self)
+    {
         // Custom initialization
+        self.view.backgroundColor = [UIColor blueColor];
     }
+    
+    
     return self;
 }
 
@@ -33,6 +38,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Setup Methods
+# pragma mark -
+/**************************************/
+- (void)setupLabelTitle
+{
+    
 }
 
 @end

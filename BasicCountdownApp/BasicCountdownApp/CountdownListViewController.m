@@ -9,12 +9,15 @@
 #import "CountdownListViewController.h"
 #import "CountdownListHeaderCell.h"
 #import "CountdownTimerCell.h"
+#import "CountdownViewController.h"
+#import "Model.h"
 #import "ObjectCountdown.h"
 
 
 
 @interface CountdownListViewController ()
 @property (nonatomic, strong) NSArray *arrayCountdowns;
+@property (nonatomic, strong) Model *model;
 @end
 
 
@@ -30,6 +33,7 @@
         self.tableView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
         self.tableView.frame = [[UIScreen mainScreen] applicationFrame];
         
+        self.model = [[Model alloc] init];
         [self loadCountdownsFromModel];
         
         [self.tableView setEditing:YES];
@@ -85,31 +89,7 @@
 
 - (void) loadCountdownsFromModel
 {
-    ObjectCountdown *countdown1 = [[ObjectCountdown alloc] init];
-    countdown1.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1387929600];
-    countdown1.title = @"Christmas";
-    
-    ObjectCountdown *countdown2 = [[ObjectCountdown alloc] init];
-    countdown2.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1388534400];
-    countdown2.title = @"New Years";
-    
-    ObjectCountdown *countdown3 = [[ObjectCountdown alloc] init];
-    countdown3.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1392336000];
-    countdown3.title = @"Valentine's";
-    
-    ObjectCountdown *countdown4 = [[ObjectCountdown alloc] init];
-    countdown4.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1401062400];
-    countdown4.title = @"Memorial Day";
-    
-    ObjectCountdown *countdown5 = [[ObjectCountdown alloc] init];
-    countdown5.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1404432000];
-    countdown5.title = @"4th of July";
-    
-    ObjectCountdown *countdown6 = [[ObjectCountdown alloc] init];
-    countdown6.dateOfEvent = [NSDate dateWithTimeIntervalSince1970:1414713600];
-    countdown6.title = @"Halloween";
-    
-    self.arrayCountdowns = @[countdown1, countdown2, countdown3, countdown4, countdown5, countdown6];
+    self.arrayCountdowns = [self.model.countdown getAllCountdowns];
 }
 
 
@@ -160,6 +140,8 @@
             cell = [[CountdownTimerCell alloc] init];
         }
         
+        [(CountdownTimerCell  *)cell setDelegateSubView:self];
+        
         ObjectCountdown *countdown = [self.arrayCountdowns objectAtIndex:(indexPath.row-1)];
         [(CountdownTimerCell *)cell setCountdown:countdown];
     }
@@ -168,6 +150,13 @@
     return cell;
 }
 
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Table View Delegate Methods
+# pragma mark -
+/**************************************/
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,6 +241,18 @@
     {
         return 100;
     }
+}
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Sub View Delegate Methods
+# pragma mark -
+/**************************************/
+- (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated
+{
+    [self.delegateSubView pushViewController:vc animated:isAnimated];
 }
 
 @end

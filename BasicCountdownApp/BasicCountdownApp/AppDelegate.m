@@ -11,7 +11,7 @@
 
 
 @interface AppDelegate ()
-@property (nonatomic, strong) MainViewController *mainVC;
+@property (nonatomic, strong) UINavigationController *navigationController;
 @end
 
 
@@ -24,9 +24,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
     
-    self.mainVC = [[MainViewController alloc] init];
-    self.mainVC.view.frame = self.window.frame;
-    [self.window addSubview:self.mainVC.view];
+    
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    mainVC.view.frame = self.window.frame;
+    
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    self.navigationController.navigationBarHidden = YES;
+    
+    [self.window addSubview:self.navigationController.view];
     
     [self.window makeKeyAndVisible];
     return YES;

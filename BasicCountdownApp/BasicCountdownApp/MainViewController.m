@@ -11,7 +11,7 @@
 
 
 @interface MainViewController ()
-@property (nonatomic, strong) UITableViewController *viewCountdownList;
+@property (nonatomic, strong) CountdownListViewController *viewCountdownList;
 @end
 
 
@@ -46,9 +46,19 @@
 - (void) setupViewCountdownList
 {
     self.viewCountdownList = [[CountdownListViewController alloc] init];
+    self.viewCountdownList.delegateSubView = self;
     [self.view addSubview:self.viewCountdownList.tableView];
 }
 
 
+/**************************************/
+# pragma mark -
+# pragma mark Sub View Delegate Methods
+# pragma mark -
+/**************************************/
+- (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated
+{
+    [self.navigationController pushViewController:vc animated:isAnimated];
+}
 
 @end

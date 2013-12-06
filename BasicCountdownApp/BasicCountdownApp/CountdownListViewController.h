@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DelegateSubView.h"
 
-@interface CountdownListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface CountdownListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, DelegateSubView>
+@property (nonatomic, weak) id<DelegateSubView> delegateSubView;
+- (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated;
 @end

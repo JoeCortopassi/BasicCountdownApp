@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DelegateSubView.h"
 
-@interface MainViewController : UIViewController 
 
+@interface MainViewController : UIViewController <DelegateSubView>
+- (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated;
 @end
