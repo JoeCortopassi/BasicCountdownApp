@@ -10,8 +10,8 @@
 #import "ObjectCountdown.h"
 #import "DelegateSubView.h"
 
-@interface CountdownTimerCell : UITableViewCell
+@interface CountdownTimerCell : UITableViewCell <DelegateSubView>
 @property (nonatomic, weak) id<DelegateSubView> delegateSubView;
 @property (nonatomic, strong) ObjectCountdown *countdown;
-- (void) updateTimer;
+- (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated;
 @end

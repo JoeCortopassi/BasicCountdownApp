@@ -46,4 +46,63 @@
         return NO;
     }
 }
+
+
+
+
+
++ (CGRect) frameForTimer:(UILabel *)timer andDescription:(UILabel *)description basedOnPreviousTimer:(UILabel *)previousTimer andPreviousDescription:(UILabel *)previousDescription
+{
+    CGFloat offsetFromPrevious = 0.0f;
+    CGFloat offsetToCurrent = 0.0f;
+    CGFloat margin = 10;
+    
+    CGFloat previousTimerX = previousTimer.frame.origin.x;
+    CGFloat previousTimerWidth = previousTimer.frame.size.width;
+    CGFloat previousDescriptionX = previousDescription.frame.origin.x;
+    CGFloat previousDescriptionWidth = previousDescription.frame.size.width;
+    
+    CGFloat timerWidth = timer.frame.size.width;
+    CGFloat descriptionWidth = description.frame.size.width;
+    
+    
+    if (previousTimerWidth > previousDescriptionWidth)
+    {
+        // Timer is wider
+        offsetFromPrevious = previousTimerX + previousTimerWidth + margin;
+    }
+    else
+    {
+        // Description is wider
+        offsetFromPrevious = previousDescriptionX + previousDescriptionWidth + margin;
+    }
+    
+    
+    if (timerWidth > descriptionWidth)
+    {
+        offsetToCurrent = 0.0f;
+    }
+    else
+    {
+        offsetToCurrent = (descriptionWidth - timerWidth)/2;
+    }
+    
+    
+    return CGRectMake(offsetFromPrevious + offsetToCurrent,
+                      timer.frame.origin.y,
+                      timer.frame.size.width,
+                      timer.frame.size.height);
+}
+
+
++ (NSString *) stringFromDate:(NSDate *)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM d, yyyy"];
+    
+    //Optionally for time zone converstions
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    
+    return [formatter stringFromDate:date];
+}
 @end

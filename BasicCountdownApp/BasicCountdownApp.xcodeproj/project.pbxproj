@@ -14,6 +14,10 @@
 		731199001852870500018C30 /* HelperTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198FF1852870500018C30 /* HelperTimer.m */; };
 		731199031852899E00018C30 /* LabelTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 731199021852899E00018C30 /* LabelTimer.m */; };
 		73119906185289B000018C30 /* LabelDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 73119905185289B000018C30 /* LabelDescription.m */; };
+		7311990918528E3400018C30 /* LabelTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311990818528E3400018C30 /* LabelTitle.m */; };
+		7311990F1853D27900018C30 /* TimerViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311990E1853D27900018C30 /* TimerViewBase.m */; };
+		731199121853D2A700018C30 /* TimerViewHorizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = 731199111853D2A700018C30 /* TimerViewHorizontal.m */; };
+		731199151853D2B400018C30 /* TimerViewVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = 731199141853D2B400018C30 /* TimerViewVertical.m */; };
 		734CF85C183F263F003513E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85B183F263F003513E8 /* Foundation.framework */; };
 		734CF85E183F263F003513E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85D183F263F003513E8 /* CoreGraphics.framework */; };
 		734CF860183F263F003513E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CF85F183F263F003513E8 /* UIKit.framework */; };
@@ -59,6 +63,14 @@
 		731199021852899E00018C30 /* LabelTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTimer.m; sourceTree = "<group>"; };
 		73119904185289B000018C30 /* LabelDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelDescription.h; sourceTree = "<group>"; };
 		73119905185289B000018C30 /* LabelDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelDescription.m; sourceTree = "<group>"; };
+		7311990718528E3400018C30 /* LabelTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelTitle.h; sourceTree = "<group>"; };
+		7311990818528E3400018C30 /* LabelTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelTitle.m; sourceTree = "<group>"; };
+		7311990D1853D27900018C30 /* TimerViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewBase.h; sourceTree = "<group>"; };
+		7311990E1853D27900018C30 /* TimerViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewBase.m; sourceTree = "<group>"; };
+		731199101853D2A700018C30 /* TimerViewHorizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewHorizontal.h; sourceTree = "<group>"; };
+		731199111853D2A700018C30 /* TimerViewHorizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewHorizontal.m; sourceTree = "<group>"; };
+		731199131853D2B400018C30 /* TimerViewVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewVertical.h; sourceTree = "<group>"; };
+		731199141853D2B400018C30 /* TimerViewVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewVertical.m; sourceTree = "<group>"; };
 		734CF858183F263F003513E8 /* BasicCountdownApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicCountdownApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		734CF85B183F263F003513E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		734CF85D183F263F003513E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,10 +147,13 @@
 			children = (
 				7383DCF0184C15C5009C21B0 /* CountdownViewController.h */,
 				7383DCF1184C15C5009C21B0 /* CountdownViewController.m */,
+				7311990718528E3400018C30 /* LabelTitle.h */,
+				7311990818528E3400018C30 /* LabelTitle.m */,
 				731199011852899E00018C30 /* LabelTimer.h */,
 				731199021852899E00018C30 /* LabelTimer.m */,
 				73119904185289B000018C30 /* LabelDescription.h */,
 				73119905185289B000018C30 /* LabelDescription.m */,
+				731199161853D35600018C30 /* Timer View */,
 			);
 			name = "Countdown Views";
 			sourceTree = "<group>";
@@ -161,6 +176,19 @@
 				731198FF1852870500018C30 /* HelperTimer.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		731199161853D35600018C30 /* Timer View */ = {
+			isa = PBXGroup;
+			children = (
+				731199101853D2A700018C30 /* TimerViewHorizontal.h */,
+				731199111853D2A700018C30 /* TimerViewHorizontal.m */,
+				731199131853D2B400018C30 /* TimerViewVertical.h */,
+				731199141853D2B400018C30 /* TimerViewVertical.m */,
+				7311990D1853D27900018C30 /* TimerViewBase.h */,
+				7311990E1853D27900018C30 /* TimerViewBase.m */,
+			);
+			name = "Timer View";
 			sourceTree = "<group>";
 		};
 		734CF84F183F263F003513E8 = {
@@ -349,15 +377,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				731199151853D2B400018C30 /* TimerViewVertical.m in Sources */,
 				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
+				7311990918528E3400018C30 /* LabelTitle.m in Sources */,
 				731199031852899E00018C30 /* LabelTimer.m in Sources */,
 				731199001852870500018C30 /* HelperTimer.m in Sources */,
+				7311990F1853D27900018C30 /* TimerViewBase.m in Sources */,
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
 				73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */,
 				73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */,
 				730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */,
 				734CF86C183F263F003513E8 /* AppDelegate.m in Sources */,
 				731198FC1852820E00018C30 /* ModelCountdown.m in Sources */,
+				731199121853D2A700018C30 /* TimerViewHorizontal.m in Sources */,
 				73119906185289B000018C30 /* LabelDescription.m in Sources */,
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
 				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,

@@ -61,4 +61,10 @@
     [self.navigationController pushViewController:vc animated:isAnimated];
 }
 
+
+- (void) popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

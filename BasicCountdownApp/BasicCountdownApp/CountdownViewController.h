@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ObjectCountdown.h"
+#import "DelegateSubView.h"
 
 
 @interface CountdownViewController : UIViewController
+@property (nonatomic, weak) id<DelegateSubView> delegateSubView;
 @property (nonatomic, strong) ObjectCountdown *countdown;
 @end

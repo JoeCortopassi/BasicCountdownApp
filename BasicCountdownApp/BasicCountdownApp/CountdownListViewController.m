@@ -255,4 +255,10 @@
     [self.delegateSubView pushViewController:vc animated:isAnimated];
 }
 
+
+- (void) popViewController
+{
+    [self.delegateSubView popViewController];
+}
+
 @end

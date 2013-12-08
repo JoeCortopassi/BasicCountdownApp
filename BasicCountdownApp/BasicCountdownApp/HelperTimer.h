@@ -13,5 +13,6 @@
 @interface HelperTimer : NSObject
 + (ObjectTimer *) getCountdownTimerForDate:(NSDate *)date;
 + (BOOL) doesTimer:(LabelTimer *)timer orDescription:(LabelDescription *)description overflowForFrame:(CGRect)frame withMargin:(CGFloat)margin;
-
++ (CGRect) frameForTimer:(UILabel *)timer andDescription:(UILabel *)description basedOnPreviousTimer:(UILabel *)previousTimer andPreviousDescription:(UILabel *)previousDescription;
++ (NSString *) stringFromDate:(NSDate *)date;
 @end
