@@ -37,7 +37,7 @@
         [self loadCountdownsFromModel];
         
         [self.tableView setEditing:YES];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
             CGFloat topBarOffset = 22;

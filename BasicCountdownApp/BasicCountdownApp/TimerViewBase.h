@@ -11,5 +11,5 @@
 @class ObjectTimer;
 
 @interface TimerViewBase : UIView
-@property (nonatomic, strong) ObjectTimer *timer;
+@property (nonatomic, strong) NSDate *date;
 @end

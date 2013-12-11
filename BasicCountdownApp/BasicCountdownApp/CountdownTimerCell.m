@@ -49,8 +49,8 @@ typedef enum {
     if (self)
     {
         // Initialization code
-        self.backgroundColor = [UIColor whiteColor];
-        
+        //self.backgroundColor = [UIColor whiteColor];
+        self.showsReorderControl = YES;
     }
     
     
@@ -60,18 +60,21 @@ typedef enum {
 
 - (void) layoutSubviews
 {
-    [self setupViewBackgroundImage];
+    [super layoutSubviews];
     
+    [self setupViewBackgroundImage];
+
     self.labelTitle = [[LabelTitle alloc] init];
     self.labelTitle.text = self.countdown.title;
     [self addSubview:self.labelTitle];
-    
+
     [self setupLabelTimer];
     [self setupButtonOverlay];
 }
 
 
-- (void)setAlpha:(CGFloat)alpha {
+- (void)setAlpha:(CGFloat)alpha
+{
     [super setAlpha:1.0f];
 }
 
@@ -101,8 +104,9 @@ typedef enum {
 {
     CGRect rect = CGRectMake(0, 50, self.frame.size.width, 50);
     self.viewTimerHorizontal = [[TimerViewHorizontal alloc] initWithFrame:rect];
-    self.viewTimerHorizontal.timer = [HelperTimer getCountdownTimerForDate:self.countdown.dateOfEvent];
-
+    //self.viewTimerHorizontal.timer = [HelperTimer getCountdownTimerForDate:self.countdown.dateOfEvent];
+    self.viewTimerHorizontal.date = self.countdown.dateOfEvent;
+    
     [self addSubview:self.viewTimerHorizontal];
 }
 
@@ -110,7 +114,7 @@ typedef enum {
 - (void) setupButtonOverlay
 {
     self.buttonOverlay = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonOverlay.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    self.buttonOverlay.frame = CGRectMake(0, 0, self.frame.size.width-60, self.frame.size.height);
     self.buttonOverlay.backgroundColor = [UIColor clearColor];
     [self.buttonOverlay setTitle:@"" forState:UIControlStateNormal];
     [self.buttonOverlay addTarget:self action:@selector(buttonOverlaySelected) forControlEvents:UIControlEventTouchUpInside];

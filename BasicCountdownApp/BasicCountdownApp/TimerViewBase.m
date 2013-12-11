@@ -29,6 +29,7 @@ typedef enum {
 
 @interface TimerViewBase ()
 @property (nonatomic, strong) NSTimer *timerRefresh;
+@property (nonatomic, strong) ObjectTimer *timer;
 @property (nonatomic, strong) LabelTimer *labelTimerYears;
 @property (nonatomic, strong) LabelTimer *labelTimerMonths;
 @property (nonatomic, strong) LabelTimer *labelTimerWeeks;
@@ -121,6 +122,23 @@ typedef enum {
 }
 
 
+- (void) setDate:(NSDate *)newDate
+{
+    if (newDate == nil)
+    {
+        return;
+    }
+    
+    _date = newDate;
+    [self updateTimer];
+    
+    self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:1
+                                                         target:self
+                                                       selector:@selector(updateTimer)
+                                                       userInfo:nil
+                                                        repeats:YES];
+}
+
 
 - (void) setTimer:(ObjectTimer *)newTimer
 {
@@ -143,12 +161,12 @@ typedef enum {
 
 - (void) updateTimer
 {
-    if (self.timer == nil)
+    if (self.date == nil)
     {
         return;
     }
     
-    [self displayTimerLabelsForTimer:self.timer];
+    [self displayTimerLabelsForTimer:[HelperTimer getCountdownTimerForDate:self.date]];
 }
 
 
@@ -186,7 +204,6 @@ typedef enum {
     [self getLabelTimerDescriptionPrevious:&labelTimerPreviousDescription ForTimeUnit:timeUnit];
     
     int refreshRate = [self refreshRateForTimeUnit:timeUnit];
-    
     
     
     
@@ -262,7 +279,6 @@ typedef enum {
     
     
     [self.timerRefresh invalidate];
-    self.timerRefresh = nil;
     self.timerRefresh = [NSTimer scheduledTimerWithTimeInterval:refreshRate
                                                          target:self
                                                        selector:@selector(updateTimer)
