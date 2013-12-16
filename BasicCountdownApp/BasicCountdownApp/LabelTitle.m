@@ -19,6 +19,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.frame = CGRectMake(inset, inset, [[UIScreen mainScreen] bounds].size.width - (inset*2), 40);
         [self setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:45.0f]];
+        self.numberOfLines = 1;
+        self.adjustsFontSizeToFitWidth = YES;
     }
     return self;
 }

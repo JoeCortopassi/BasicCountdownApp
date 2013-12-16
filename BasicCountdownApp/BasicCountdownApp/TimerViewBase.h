@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum {
+    kVertical,
+    kHorizontal
+} TimerOrientation;
+
+
 @class ObjectTimer;
 
 @interface TimerViewBase : UIView
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, assign) CGFloat outerWidthOfTimers;
 @end

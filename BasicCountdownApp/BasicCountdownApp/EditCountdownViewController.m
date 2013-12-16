@@ -1,23 +1,20 @@
 //
-//  CountdownViewController.m
+//  EditCountdownViewController.m
 //  BasicCountdownApp
 //
-//  Created by Joe Cortopassi on 12/1/13.
+//  Created by Joseph Cortopassi on 12/14/13.
 //  Copyright (c) 2013 Joe Cortopassi. All rights reserved.
 //
 
-#import "CountdownViewController.h"
+#import "EditCountdownViewController.h"
 #import "LabelTitle.h"
-#import "LabelTimer.h"
-#import "LabelDescription.h"
 #import "ObjectCountdown.h"
-#import "ObjectTimer.h"
-#import "HelperTimer.h"
 #import "TimerViewHorizontal.h"
+#import "HelperTimer.h"
 
 
 
-@interface CountdownViewController ()
+@interface EditCountdownViewController ()
 @property (nonatomic, strong) UIImageView *viewBackgroundImage;
 @property (nonatomic, strong) UIButton *buttonExit;
 @property (nonatomic, strong) LabelTitle *labelTitle;
@@ -29,19 +26,15 @@
 
 
 
-@implementation CountdownViewController
+
+@implementation EditCountdownViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if (self)
-    {
+    if (self) {
         // Custom initialization
-        
     }
-    
-    
     return self;
 }
 
@@ -49,54 +42,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupViewBackgroundImage];
-    [self setupButtonExit];
     [self setupLabelCountdownDate];
     [self setupLabelTitle];
     [self setupViewTimer];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 
-/**************************************/
-# pragma mark -
-# pragma mark Setup Methods
-# pragma mark -
-/**************************************/
+
 - (void) setupViewBackgroundImage
 {
     
-}
-
-
-- (void) setupButtonExit
-{
-    CGFloat buttonSize = 50;
-    CGFloat margin = 5;
-    UIColor *colorExit = [UIColor colorWithRed:(0.0f/255.0f) green:(0.0f/255.0f) blue:(0.0f/255.0f) alpha:0.5f];
-    
-    self.buttonExit = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonExit.frame = CGRectMake(self.view.frame.size.width - buttonSize - margin, 22 + margin, buttonSize, buttonSize);
-    self.buttonExit.backgroundColor = [UIColor clearColor];
-    [self.buttonExit setTitle:@"X" forState:UIControlStateNormal];
-    self.buttonExit.titleLabel.font = [UIFont systemFontOfSize:24];
-    [self.buttonExit.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    self.buttonExit.titleLabel.textColor = colorExit;
-    [self.buttonExit addTarget:self action:@selector(buttonExitPressed) forControlEvents:UIControlEventTouchUpInside];
-
-    self.buttonExit.layer.cornerRadius = buttonSize/2;
-    self.buttonExit.layer.borderWidth = 1;
-    self.buttonExit.layer.borderColor = colorExit.CGColor;
-    
-    [self.view addSubview:self.buttonExit];
 }
 
 
@@ -109,9 +68,8 @@
     self.labelCountdownDate.textAlignment = NSTextAlignmentCenter;
     self.labelCountdownDate.textColor = [UIColor lightGrayColor];
     self.labelCountdownDate.text = [HelperTimer stringFromDate:self.countdown.dateOfEvent];
-
-//    self.labelCountdownDate.backgroundColor = [UIColor blueColor];
-  
+    
+    
     [self.view addSubview:self.labelCountdownDate];
 }
 
@@ -130,7 +88,6 @@
                                        height);
     self.labelTitle.textAlignment = NSTextAlignmentCenter;
     
-//    self.labelTitle.backgroundColor = [UIColor yellowColor];
     
     [self.view addSubview:self.labelTitle];
 }
@@ -147,21 +104,8 @@
     self.viewTimer.date = self.countdown.dateOfEvent;
     self.viewTimer.backgroundColor = [UIColor clearColor];
     
+    
     [self.view addSubview:self.viewTimer];
-}
-
-
-
-
-
-/**************************************/
-# pragma mark -
-# pragma mark Button Actions
-# pragma mark -
-/**************************************/
-- (void) buttonExitPressed
-{
-    [self.delegateSubView popViewController];
 }
 
 @end

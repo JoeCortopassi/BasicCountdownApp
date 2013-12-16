@@ -7,6 +7,10 @@
 //
 
 #import "CountdownListHeaderCell.h"
+#import "EditCountdownViewController.h"
+#import "ObjectCountdown.h"
+#import "HelperDate.h"
+
 
 
 @interface CountdownListHeaderCell ()
@@ -47,10 +51,21 @@
     [self.buttonNewCountdown setTitle:@"+" forState:UIControlStateNormal];
     [self.buttonNewCountdown setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 30, 0)];
     [self.buttonNewCountdown setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [self.buttonNewCountdown addTarget:self action:Nil forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonNewCountdown addTarget:self action:@selector(buttonNewCountdownPressed) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.buttonNewCountdown];
 }
 
 
 
+
+- (void) buttonNewCountdownPressed
+{
+    ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
+    countdown.title = @"New Countdown foo bar test serve ask";
+    countdown.dateOfEvent = [HelperDate getDateTomorrow];
+    
+    EditCountdownViewController *editCountdownVC = [[EditCountdownViewController alloc] init];
+    editCountdownVC.countdown = countdown;
+    [self.delegateSubView pushViewController:editCountdownVC animated:YES];
+}
 @end

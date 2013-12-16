@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DelegateSubView.h"
 
-@interface CountdownListHeaderCell : UITableViewCell
 
+
+
+@interface CountdownListHeaderCell : UITableViewCell <DelegateSubView>
+@property (nonatomic, weak) id<DelegateSubView> delegateSubView;
 @end

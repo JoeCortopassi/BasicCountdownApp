@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ObjectCountdown.h"
 
+@class FMDatabaseQueue;
+
 @interface ModelCountdown : NSObject
+@property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
 - (NSArray *) getAllCountdowns;
-- (void) addNewCountdown:(ObjectCountdown *)newCountdown;
+- (int) addNewCountdown:(ObjectCountdown *)newCountdown;
 - (void) editCountdown:(ObjectCountdown *)countdown;
 - (void) deleteCountdown:(ObjectCountdown *)countdown;
 @end

@@ -16,6 +16,7 @@
     if (self)
     {
         self.frame = CGRectMake(0, 0, 0, 0);
+        self.backgroundColor = [UIColor clearColor];
         self.textColor = [UIColor darkGrayColor];
         self.textAlignment = NSTextAlignmentCenter;
         self.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:28.0f];

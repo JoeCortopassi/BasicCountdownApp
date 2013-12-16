@@ -128,6 +128,8 @@
             cell = [[CountdownListHeaderCell alloc] init];
         }
         
+        [(CountdownListHeaderCell *)cell setDelegateSubView:self];
+        
     }
     else
     {

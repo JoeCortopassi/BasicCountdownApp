@@ -27,7 +27,10 @@ typedef enum {
 } TimeUnit;
 
 
+
+
 @interface TimerViewBase ()
+@property (nonatomic, assign) TimerOrientation orientation;
 @property (nonatomic, strong) NSTimer *timerRefresh;
 @property (nonatomic, strong) ObjectTimer *timer;
 @property (nonatomic, strong) LabelTimer *labelTimerYears;
@@ -62,6 +65,11 @@ typedef enum {
 }
 
 
+
+- (TimerOrientation) orientation
+{
+    return kHorizontal;
+}
 
 
 
@@ -207,74 +215,16 @@ typedef enum {
     
     
     
-    if ((labelTimerPrevious.hidden == YES || labelTimerPrevious == nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+    BOOL positionReturn = [self positionTimer:labelTimer
+                               andDescription:labelTimerDescription
+                         basedOnPreviousTimer:labelTimerPrevious
+                       andPreviousDescription:labelTimerPreviousDescription];
+    
+    if (!positionReturn)
     {
-        // First timer/description combo
-        
-        labelTimer.frame = CGRectMake(20,
-                                      0,
-                                      30,
-                                      30);
-        labelTimer.hidden = NO;
-//labelTimer.backgroundColor = [UIColor blueColor];
-        [labelTimer sizeToFit];
-        
-        [labelTimerDescription sizeToFit];
-        labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
-        labelTimerDescription.hidden = NO;
+        return NO;
     }
-    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
-        
-    {
-        // Each additional timer/description combo
-        
-        labelTimer.frame = CGRectMake(0,
-                                      0,
-                                      30,
-                                      30);
-        [labelTimer sizeToFit];
-        labelTimer.hidden = NO;
-        
-        [labelTimerDescription sizeToFit];
-        labelTimerDescription.hidden = NO;
-        
-        
-        CGRect newTimerFrame = [HelperTimer frameForTimer:labelTimer andDescription:labelTimerDescription basedOnPreviousTimer:labelTimerPrevious andPreviousDescription:labelTimerPreviousDescription];
-        labelTimer.frame = newTimerFrame;
-        labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
-        
-        
-        if ([HelperTimer doesTimer:labelTimer orDescription:labelTimerDescription overflowForFrame:self.frame withMargin:45.0f])
-        {
-            // Last timer if they don't fit
-            labelTimer.hidden = YES;
-            labelTimerDescription.hidden = YES;
-            
-            return NO;
-        }
-    }
-    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && [labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
-        
-    {
-        // Whatever timer in between the first and last one, that has a zero value and is thus hidden
-        labelTimer.frame = CGRectMake(labelTimerPrevious.frame.origin.x,
-                                      -200,
-                                      labelTimerPrevious.frame.size.width,
-                                      labelTimerPrevious.frame.size.height);
-        labelTimer.hidden = NO;
-        
-        labelTimerDescription.frame = CGRectMake(labelTimerPreviousDescription.frame.origin.x,
-                                                 -200,
-                                                 labelTimerPreviousDescription.frame.size.width,
-                                                 labelTimerPreviousDescription.frame.size.height);
-        labelTimer.hidden = NO;
-        
-        return YES;
-    }
-    else
-    {
-        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"");
-    }
+    
     
     
     
@@ -289,6 +239,197 @@ typedef enum {
 }
 
 
+
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Label Positioning Methods
+# pragma mark -
+/**************************************/
+
+- (BOOL) positionTimer:(LabelTimer *)labelTimer
+        andDescription:(LabelDescription *)labelTimerDescription
+  basedOnPreviousTimer:(LabelTimer *)labelTimerPrevious
+andPreviousDescription:(LabelDescription *)labelTimerPreviousDescription
+{
+    if ((labelTimerPrevious.hidden == YES || labelTimerPrevious == nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+    {
+        // First timer/description combo
+        
+        if (self.orientation == kHorizontal)
+        {
+            [self horizontalArrangeFirstTimer:labelTimer
+                               andDescription:labelTimerDescription];
+        }
+        else
+        {
+            [self verticalArrangeFirstTimer:labelTimer
+                             andDescription:labelTimerDescription];
+        }
+        
+        self.outerWidthOfTimers = labelTimer.frame.origin.x + labelTimer.frame.size.width;
+    }
+    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && ![labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+        
+    {
+        // Each additional timer/description combo
+        if (self.orientation == kHorizontal)
+        {
+            [self horizontalArrangeAdditionalTimer:labelTimer
+                                    andDescription:labelTimerDescription
+                              basedOnPreviousTimer:labelTimerPrevious
+                            andPreviousDescription:labelTimerPreviousDescription];
+            
+            if ([HelperTimer doesTimer:labelTimer orDescription:labelTimerDescription overflowForFrame:self.frame withMargin:45.0f])
+            {
+                // Last timer if they don't fit
+                labelTimer.hidden = YES;
+                labelTimerDescription.hidden = YES;
+                
+                return NO;
+            }
+            else
+            {
+                self.outerWidthOfTimers = labelTimer.frame.origin.x + labelTimer.frame.size.width;
+            }
+        }
+        else
+        {
+            [self verticalArrangeAdditionalTimer:labelTimer
+                                  andDescription:labelTimerDescription
+                            basedOnPreviousTimer:labelTimerPrevious
+                          andPreviousDescription:labelTimerPreviousDescription];
+        }
+        
+        
+    }
+    else if ((labelTimerPrevious.hidden == NO && labelTimerPrevious != nil) && [labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+        
+    {
+        [self hideTimer:labelTimer andDescription:labelTimerDescription basedOnPreviousTimer:labelTimerPrevious andPreviousDescription:labelTimerPreviousDescription];
+        
+//        return YES;
+    }
+    else if ((labelTimerPrevious.hidden == YES || labelTimerPrevious == nil) && [labelTimer.text caseInsensitiveCompare:@"0"]==NSOrderedSame)
+    {
+        // First timer/description hasn't been found yet, AND this one isn't it either
+        // Do nothing. Timer and combo are already hidden
+    }
+    else
+    {
+        NSLog(@"%s [Line %d] %@ ", __PRETTY_FUNCTION__, __LINE__, @"");
+    }
+    
+    return YES;
+}
+
+
+// Horizontal Arrangements
+
+- (void) horizontalArrangeFirstTimer:(LabelTimer *)timer andDescription:(LabelDescription *)description
+{
+    timer.frame = CGRectMake(20,
+                             0,
+                             30,
+                             30);
+    timer.hidden = NO;
+    //timer.backgroundColor = [UIColor blueColor];
+    [timer sizeToFit];
+    
+    [description sizeToFit];
+    description.center = CGPointMake(timer.center.x, timer.center.y + 20);
+    description.hidden = NO;
+}
+
+
+- (void) horizontalArrangeAdditionalTimer:(LabelTimer *)labelTimer andDescription:(LabelDescription *)labelTimerDescription basedOnPreviousTimer:(LabelTimer *)labelTimerPrevious andPreviousDescription:(LabelDescription *)labelTimerPreviousDescription
+{
+    
+    labelTimer.frame = CGRectMake(0,
+                                  0,
+                                  30,
+                                  30);
+    [labelTimer sizeToFit];
+    labelTimer.hidden = NO;
+    
+    [labelTimerDescription sizeToFit];
+    labelTimerDescription.hidden = NO;
+    
+    
+    CGRect newTimerFrame = [HelperTimer frameForTimer:labelTimer andDescription:labelTimerDescription basedOnPreviousTimer:labelTimerPrevious andPreviousDescription:labelTimerPreviousDescription];
+    labelTimer.frame = newTimerFrame;
+    labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
+}
+
+
+
+// Vertical arrangements
+
+- (void) verticalArrangeFirstTimer:(LabelTimer *)timer andDescription:(LabelDescription *)description
+{
+    timer.frame = CGRectMake(20,
+                             0,
+                             30,
+                             30);
+    timer.hidden = NO;
+    //timer.backgroundColor = [UIColor blueColor];
+    [timer sizeToFit];
+    
+    [description sizeToFit];
+    description.center = CGPointMake(timer.center.x, timer.center.y + 20);
+    description.hidden = NO;
+}
+
+
+- (void) verticalArrangeAdditionalTimer:(LabelTimer *)labelTimer andDescription:(LabelDescription *)labelTimerDescription basedOnPreviousTimer:(LabelTimer *)labelTimerPrevious andPreviousDescription:(LabelDescription *)labelTimerPreviousDescription
+{
+    
+    labelTimer.frame = CGRectMake(0,
+                                  0,
+                                  30,
+                                  30);
+    [labelTimer sizeToFit];
+    labelTimer.hidden = NO;
+    
+    [labelTimerDescription sizeToFit];
+    labelTimerDescription.hidden = NO;
+    
+    
+    CGRect newTimerFrame = [HelperTimer frameForTimer:labelTimer andDescription:labelTimerDescription basedOnPreviousTimer:labelTimerPrevious andPreviousDescription:labelTimerPreviousDescription];
+    labelTimer.frame = newTimerFrame;
+    labelTimerDescription.center = CGPointMake(labelTimer.center.x, labelTimer.center.y + 20);
+}
+
+
+- (void) hideTimer:(LabelTimer *)labelTimer andDescription:(LabelDescription *)labelTimerDescription basedOnPreviousTimer:(LabelTimer *)labelTimerPrevious andPreviousDescription:(LabelDescription *)labelTimerPreviousDescription
+{
+    // Whatever timer in between the first and last one, that has a zero value and is thus hidden
+    labelTimer.frame = CGRectMake(labelTimerPrevious.frame.origin.x,
+                                  -20000,
+                                  labelTimerPrevious.frame.size.width,
+                                  labelTimerPrevious.frame.size.height);
+    labelTimer.hidden = NO;
+    
+    labelTimerDescription.frame = CGRectMake(labelTimerPreviousDescription.frame.origin.x,
+                                             -20000,
+                                             labelTimerPreviousDescription.frame.size.width,
+                                             labelTimerPreviousDescription.frame.size.height);
+    labelTimer.hidden = NO;
+}
+
+
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Label Discovery Methods
+# pragma mark -
+/**************************************/
 
 - (void) getLabelTimer:(LabelTimer **)labelTimer forTimeUnit:(TimeUnit)timeUnit andAddTextFromTimer:(ObjectTimer *)timer
 {

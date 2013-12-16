@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ObjectCountdown.h"
 #import "DelegateSubView.h"
+
+
+@class ObjectCountdown;
 
 
 @interface CountdownViewController : UIViewController

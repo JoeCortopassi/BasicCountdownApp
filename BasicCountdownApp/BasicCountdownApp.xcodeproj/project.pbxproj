@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226EA184E4D2800F19D5C /* ObjectTimer.m */; };
 		730226EE184E9FED00F19D5C /* ObjectCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 730226ED184E9FED00F19D5C /* ObjectCountdown.m */; };
+		730E0518185977B100DBEF2F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E050E185977B100DBEF2F /* FMDatabase.m */; };
+		730E0519185977B100DBEF2F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E0510185977B100DBEF2F /* FMDatabaseAdditions.m */; };
+		730E051A185977B100DBEF2F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E0512185977B100DBEF2F /* FMDatabasePool.m */; };
+		730E051B185977B100DBEF2F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E0514185977B100DBEF2F /* FMDatabaseQueue.m */; };
+		730E051D185977B100DBEF2F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E0517185977B100DBEF2F /* FMResultSet.m */; };
+		730E0520185A17FC00DBEF2F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 730E051F185A17FC00DBEF2F /* libsqlite3.0.dylib */; };
+		730E0522185A180400DBEF2F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730E0521185A180400DBEF2F /* QuartzCore.framework */; };
+		730E0528185A27DD00DBEF2F /* HelperDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E0527185A27DD00DBEF2F /* HelperDate.m */; };
+		730E052C185D17FC00DBEF2F /* EditCountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E052B185D17FC00DBEF2F /* EditCountdownViewController.m */; };
 		731198F9185281AA00018C30 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198F8185281AA00018C30 /* Model.m */; };
 		731198FC1852820E00018C30 /* ModelCountdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198FB1852820E00018C30 /* ModelCountdown.m */; };
 		731199001852870500018C30 /* HelperTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 731198FF1852870500018C30 /* HelperTimer.m */; };
@@ -52,6 +61,22 @@
 		730226EA184E4D2800F19D5C /* ObjectTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectTimer.m; sourceTree = "<group>"; };
 		730226EC184E9FED00F19D5C /* ObjectCountdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectCountdown.h; sourceTree = "<group>"; };
 		730226ED184E9FED00F19D5C /* ObjectCountdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectCountdown.m; sourceTree = "<group>"; };
+		730E050D185977B100DBEF2F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		730E050E185977B100DBEF2F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		730E050F185977B100DBEF2F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		730E0510185977B100DBEF2F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		730E0511185977B100DBEF2F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		730E0512185977B100DBEF2F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		730E0513185977B100DBEF2F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		730E0514185977B100DBEF2F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		730E0516185977B100DBEF2F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		730E0517185977B100DBEF2F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		730E051F185A17FC00DBEF2F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		730E0521185A180400DBEF2F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		730E0526185A27DD00DBEF2F /* HelperDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperDate.h; sourceTree = "<group>"; };
+		730E0527185A27DD00DBEF2F /* HelperDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperDate.m; sourceTree = "<group>"; };
+		730E052A185D17FC00DBEF2F /* EditCountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCountdownViewController.h; sourceTree = "<group>"; };
+		730E052B185D17FC00DBEF2F /* EditCountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCountdownViewController.m; sourceTree = "<group>"; };
 		731198F4185247F500018C30 /* DelegateSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateSubView.h; sourceTree = "<group>"; };
 		731198F7185281AA00018C30 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		731198F8185281AA00018C30 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
@@ -104,6 +129,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730E0522185A180400DBEF2F /* QuartzCore.framework in Frameworks */,
+				730E0520185A17FC00DBEF2F /* libsqlite3.0.dylib in Frameworks */,
 				734CF85E183F263F003513E8 /* CoreGraphics.framework in Frameworks */,
 				734CF860183F263F003513E8 /* UIKit.framework in Frameworks */,
 				734CF85C183F263F003513E8 /* Foundation.framework in Frameworks */,
@@ -134,6 +161,40 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		730E050C1859776F00DBEF2F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				730E051E185977BB00DBEF2F /* FMDB */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		730E051E185977BB00DBEF2F /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				730E050D185977B100DBEF2F /* FMDatabase.h */,
+				730E050E185977B100DBEF2F /* FMDatabase.m */,
+				730E050F185977B100DBEF2F /* FMDatabaseAdditions.h */,
+				730E0510185977B100DBEF2F /* FMDatabaseAdditions.m */,
+				730E0511185977B100DBEF2F /* FMDatabasePool.h */,
+				730E0512185977B100DBEF2F /* FMDatabasePool.m */,
+				730E0513185977B100DBEF2F /* FMDatabaseQueue.h */,
+				730E0514185977B100DBEF2F /* FMDatabaseQueue.m */,
+				730E0516185977B100DBEF2F /* FMResultSet.h */,
+				730E0517185977B100DBEF2F /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
+		730E0529185D17DA00DBEF2F /* Add/Edit Views */ = {
+			isa = PBXGroup;
+			children = (
+				730E052A185D17FC00DBEF2F /* EditCountdownViewController.h */,
+				730E052B185D17FC00DBEF2F /* EditCountdownViewController.m */,
+			);
+			name = "Add/Edit Views";
+			sourceTree = "<group>";
+		};
 		731198F3185247BE00018C30 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +206,7 @@
 		731198F5185253EB00018C30 /* Countdown Views */ = {
 			isa = PBXGroup;
 			children = (
+				730E0529185D17DA00DBEF2F /* Add/Edit Views */,
 				7383DCF0184C15C5009C21B0 /* CountdownViewController.h */,
 				7383DCF1184C15C5009C21B0 /* CountdownViewController.m */,
 				7311990718528E3400018C30 /* LabelTitle.h */,
@@ -174,6 +236,8 @@
 			children = (
 				731198FE1852870500018C30 /* HelperTimer.h */,
 				731198FF1852870500018C30 /* HelperTimer.m */,
+				730E0526185A27DD00DBEF2F /* HelperDate.h */,
+				730E0527185A27DD00DBEF2F /* HelperDate.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -213,6 +277,8 @@
 		734CF85A183F263F003513E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				730E0521185A180400DBEF2F /* QuartzCore.framework */,
+				730E051F185A17FC00DBEF2F /* libsqlite3.0.dylib */,
 				734CF85B183F263F003513E8 /* Foundation.framework */,
 				734CF85D183F263F003513E8 /* CoreGraphics.framework */,
 				734CF85F183F263F003513E8 /* UIKit.framework */,
@@ -236,6 +302,7 @@
 				730226E8184E4CFB00F19D5C /* Objects */,
 				734CF86D183F263F003513E8 /* Images.xcassets */,
 				734CF862183F263F003513E8 /* Supporting Files */,
+				730E050C1859776F00DBEF2F /* Libraries */,
 			);
 			path = BasicCountdownApp;
 			sourceTree = "<group>";
@@ -381,9 +448,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				731199151853D2B400018C30 /* TimerViewVertical.m in Sources */,
+				730E0518185977B100DBEF2F /* FMDatabase.m in Sources */,
 				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
 				7311990918528E3400018C30 /* LabelTitle.m in Sources */,
+				730E051A185977B100DBEF2F /* FMDatabasePool.m in Sources */,
+				730E0528185A27DD00DBEF2F /* HelperDate.m in Sources */,
 				731199031852899E00018C30 /* LabelTimer.m in Sources */,
+				730E052C185D17FC00DBEF2F /* EditCountdownViewController.m in Sources */,
+				730E051D185977B100DBEF2F /* FMResultSet.m in Sources */,
 				731199001852870500018C30 /* HelperTimer.m in Sources */,
 				7311990F1853D27900018C30 /* TimerViewBase.m in Sources */,
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
@@ -397,7 +469,9 @@
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
 				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,
 				734CF868183F263F003513E8 /* main.m in Sources */,
+				730E051B185977B100DBEF2F /* FMDatabaseQueue.m in Sources */,
 				731198F9185281AA00018C30 /* Model.m in Sources */,
+				730E0519185977B100DBEF2F /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
