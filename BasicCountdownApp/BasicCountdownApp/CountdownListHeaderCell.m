@@ -46,22 +46,21 @@
 {
     self.buttonNewCountdown = [UIButton buttonWithType:UIButtonTypeCustom];
     self.buttonNewCountdown.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 75, 0, 75, 75);
-    [self.buttonNewCountdown.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:75.0f]];
+    [self.buttonNewCountdown.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
     [self.buttonNewCountdown.titleLabel setTextColor:[UIColor whiteColor]];
-    [self.buttonNewCountdown setTitle:@"+" forState:UIControlStateNormal];
-    [self.buttonNewCountdown setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 30, 0)];
+    [self.buttonNewCountdown setTitle:@"\uf196" forState:UIControlStateNormal];
     [self.buttonNewCountdown setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [self.buttonNewCountdown addTarget:self action:@selector(buttonNewCountdownPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonNewCountdown addTarget:self action:@selector(buttonPressedNewCountdown) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.buttonNewCountdown];
 }
 
 
 
 
-- (void) buttonNewCountdownPressed
+- (void) buttonPressedNewCountdown
 {
     ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
-    countdown.title = @"New Countdown foo bar test serve ask";
+    countdown.title = @"New Countdown";
     countdown.dateOfEvent = [HelperDate getDateTomorrow];
     
     EditCountdownViewController *editCountdownVC = [[EditCountdownViewController alloc] init];

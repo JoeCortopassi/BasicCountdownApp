@@ -41,6 +41,7 @@
 		734CF881183F2640003513E8 /* BasicCountdownAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF880183F2640003513E8 /* BasicCountdownAppTests.m */; };
 		734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF88B183F2F3E003513E8 /* MainViewController.m */; };
 		7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7383DCF1184C15C5009C21B0 /* CountdownViewController.m */; };
+		73A552181863DE8F0081E694 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73A552171863DE8F0081E694 /* FontAwesome.ttf */; };
 		73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C11842E343003A5218 /* CountdownListViewController.m */; };
 		73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C818431C53003A5218 /* CountdownTimerCell.m */; };
 		73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1CB18431CA6003A5218 /* CountdownListHeaderCell.m */; };
@@ -116,6 +117,7 @@
 		734CF88B183F2F3E003513E8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		7383DCF0184C15C5009C21B0 /* CountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownViewController.h; sourceTree = "<group>"; };
 		7383DCF1184C15C5009C21B0 /* CountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownViewController.m; sourceTree = "<group>"; };
+		73A552171863DE8F0081E694 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		73C7A1C01842E343003A5218 /* CountdownListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownListViewController.h; sourceTree = "<group>"; };
 		73C7A1C11842E343003A5218 /* CountdownListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownListViewController.m; sourceTree = "<group>"; };
 		73C7A1C718431C53003A5218 /* CountdownTimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownTimerCell.h; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		730E050C1859776F00DBEF2F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				73A551F61863931B0081E694 /* Font Awesome */,
 				730E051E185977BB00DBEF2F /* FMDB */,
 			);
 			name = Libraries;
@@ -336,6 +339,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		73A551F61863931B0081E694 /* Font Awesome */ = {
+			isa = PBXGroup;
+			children = (
+				73A552171863DE8F0081E694 /* FontAwesome.ttf */,
+			);
+			name = "Font Awesome";
+			sourceTree = "<group>";
+		};
 		73C7A1C31842E34A003A5218 /* CountdownList */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +440,7 @@
 			files = (
 				734CF866183F263F003513E8 /* InfoPlist.strings in Resources */,
 				734CF86E183F263F003513E8 /* Images.xcassets in Resources */,
+				73A552181863DE8F0081E694 /* FontAwesome.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

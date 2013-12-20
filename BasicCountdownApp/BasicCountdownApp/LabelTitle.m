@@ -7,6 +7,7 @@
 //
 
 #import "LabelTitle.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LabelTitle
 
@@ -21,6 +22,13 @@
         [self setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:45.0f]];
         self.numberOfLines = 1;
         self.adjustsFontSizeToFitWidth = YES;
+        
+        // For visibility on differing backgrounds
+        [self.layer setShadowColor:[UIColor whiteColor].CGColor];
+        [self.layer setShadowOffset:CGSizeMake(0, 0)];
+        [self.layer setShadowRadius:1.0];
+        [self.layer setShadowOpacity:1.0];
+        [self.layer setMasksToBounds:NO];
     }
     return self;
 }

@@ -90,7 +90,7 @@
     self.buttonExit.titleLabel.font = [UIFont systemFontOfSize:24];
     [self.buttonExit.titleLabel setTextAlignment:NSTextAlignmentCenter];
     self.buttonExit.titleLabel.textColor = colorExit;
-    [self.buttonExit addTarget:self action:@selector(buttonExitPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonExit addTarget:self action:@selector(buttonPressedExit) forControlEvents:UIControlEventTouchUpInside];
 
     self.buttonExit.layer.cornerRadius = buttonSize/2;
     self.buttonExit.layer.borderWidth = 1;
@@ -159,7 +159,7 @@
 # pragma mark Button Actions
 # pragma mark -
 /**************************************/
-- (void) buttonExitPressed
+- (void) buttonPressedExit
 {
     [self.delegateSubView popViewController];
 }

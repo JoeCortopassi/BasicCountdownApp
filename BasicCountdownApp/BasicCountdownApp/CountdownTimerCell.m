@@ -63,7 +63,7 @@ typedef enum {
     [super layoutSubviews];
     
     [self setupViewBackgroundImage];
-
+    
     self.labelTitle = [[LabelTitle alloc] init];
     self.labelTitle.text = self.countdown.title;
     [self addSubview:self.labelTitle];

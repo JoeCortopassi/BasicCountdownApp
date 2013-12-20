@@ -22,6 +22,13 @@
         self.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:28.0f];
         self.text = @"0";
         self.hidden = YES;
+        
+        // For visibility on differing backgrounds
+        [self.layer setShadowColor:[UIColor whiteColor].CGColor];
+        [self.layer setShadowOffset:CGSizeMake(0, 0)];
+        [self.layer setShadowRadius:1.0];
+        [self.layer setShadowOpacity:1.0];
+        [self.layer setMasksToBounds:NO];
     }
     return self;
 }
