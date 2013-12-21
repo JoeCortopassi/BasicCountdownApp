@@ -61,7 +61,6 @@ typedef enum {
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    
     [self setupViewBackgroundImage];
     
     self.labelTitle = [[LabelTitle alloc] init];

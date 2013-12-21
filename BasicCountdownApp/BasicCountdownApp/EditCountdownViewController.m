@@ -11,6 +11,8 @@
 #import "ObjectCountdown.h"
 #import "TimerViewHorizontal.h"
 #import "HelperTimer.h"
+#import "FadeOutOverlayView.h"
+#import "EditPagingView.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -24,6 +26,10 @@
 @property (nonatomic, strong) UIButton *buttonEdit;
 @property (nonatomic, strong) UIButton *buttonSave;
 @property (nonatomic, strong) NSTimer *timerRefresh;
+// Edit views
+@property (nonatomic, strong) FadeOutOverlayView *viewFadeOutOverlay;
+@property (nonatomic, strong) UIButton *buttonEditClose;
+@property (nonatomic, strong) EditPagingView *viewEditPaging;
 @end
 
 
@@ -55,6 +61,10 @@
     [self setupButtonExit];
     [self setupButtonEdit];
     [self setupButtonSave];
+    
+    [self setupViewFadeOutOverlay];
+    [self setupButtonCloseEdit];
+    [self setupViewEditPaging];
 }
 
 
@@ -67,14 +77,47 @@
 # pragma mark -
 /**************************************/
 
+- (void) setupViewFadeOutOverlay
+{
+    self.viewFadeOutOverlay = [[FadeOutOverlayView alloc] init];
+    self.viewFadeOutOverlay.hidden = YES;
+    self.viewFadeOutOverlay.alpha = 0.0;
+    
+    [self.view addSubview:self.viewFadeOutOverlay];
+}
+
+
+- (void) setupButtonCloseEdit
+{
+    self.buttonEditClose = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.buttonEditClose.frame = self.view.frame;
+    self.buttonEditClose.backgroundColor = [UIColor clearColor];
+    [self.buttonEditClose setTitle:@"" forState:UIControlStateNormal];
+    [self.buttonEditClose addTarget:self action:@selector(buttonPressedEditClose) forControlEvents:UIControlEventTouchUpInside];
+    self.buttonEditClose.hidden = YES;
+    
+    [self.view addSubview:self.buttonEditClose];
+}
+
+
+- (void) setupViewEditPaging
+{
+    self.viewEditPaging = [[EditPagingView alloc] init];
+    self.viewEditPaging.hidden = YES;
+    self.viewEditPaging.alpha = 0.0;
+    
+    [self.view addSubview:self.viewEditPaging];
+}
+
+
 - (void) setupButtonExit
 {
     self.buttonExit = [UIButton buttonWithType:UIButtonTypeCustom];
     self.buttonExit.frame = CGRectMake(0, 22, 70, 70);
 //    self.buttonExit.backgroundColor = [UIColor orangeColor];
     self.buttonExit.titleLabel.textColor = [UIColor blackColor];
-    [self.buttonExit.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
-    [self.buttonExit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.buttonExit.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:35.0f]];
+    [self.buttonExit setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.buttonExit setTitle:@"\uf05c" forState:UIControlStateNormal];
     [self.buttonExit addTarget:self action:@selector(buttonPressedExit) forControlEvents:UIControlEventTouchUpInside];
     
@@ -85,11 +128,10 @@
 - (void) setupButtonEdit
 {
     self.buttonEdit = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonEdit.frame = CGRectMake(100, 22, 70, 70);
-    self.buttonEdit.center = CGPointMake(self.view.frame.size.width/2, (self.buttonEdit.frame.size.height/2) + self.buttonEdit.frame.origin.y);
+    self.buttonEdit.frame = CGRectMake(0, self.view.frame.size.height - 70, 70, 70);
 //    self.buttonEdit.backgroundColor = [UIColor orangeColor];
-    [self.buttonEdit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.buttonEdit.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
+    [self.buttonEdit setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.buttonEdit.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:35.0f]];
     self.buttonEdit.titleLabel.textColor = [UIColor blackColor];
     [self.buttonEdit setTitle:@"\uf044" forState:UIControlStateNormal];
     [self.buttonEdit addTarget:self action:@selector(buttonPressedEdit) forControlEvents:UIControlEventTouchUpInside];
@@ -101,10 +143,10 @@
 - (void) setupButtonSave
 {
     self.buttonSave = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonSave.frame = CGRectMake(self.view.frame.size.width-70, 22, 70, 70);
+    self.buttonSave.frame = CGRectMake(self.view.frame.size.width-70, self.view.frame.size.height - 70, 70, 70);
     //    self.buttonSave.backgroundColor = [UIColor orangeColor];
-    [self.buttonSave setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.buttonSave.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
+    [self.buttonSave setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.buttonSave.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:35.0f]];
     self.buttonSave.titleLabel.textColor = [UIColor blackColor];
     [self.buttonSave setTitle:@"\uf0c7" forState:UIControlStateNormal];
     [self.buttonSave addTarget:self action:@selector(buttonPressedSave) forControlEvents:UIControlEventTouchUpInside];
@@ -186,7 +228,15 @@
 
 - (void) buttonPressedEdit
 {
-    
+    [UIView animateWithDuration:0.5 animations:^(void){
+        self.viewFadeOutOverlay.hidden = NO;
+        self.viewFadeOutOverlay.alpha = self.viewFadeOutOverlay.opacity;
+        
+        self.buttonEditClose.hidden = NO;
+        
+        self.viewEditPaging.hidden = NO;
+        self.viewEditPaging.alpha = 1.0;
+    }];
 }
 
 
@@ -194,5 +244,27 @@
 {
     
 }
+
+
+- (void) buttonPressedEditClose
+{
+    [UIView animateWithDuration:0.5 animations:^(void){
+        self.viewFadeOutOverlay.alpha = 0.0;
+        self.viewEditPaging.alpha = 0.0;
+    } completion:^(BOOL finished){
+        self.viewFadeOutOverlay.hidden = YES;
+        self.buttonEditClose.hidden = YES;
+        self.viewEditPaging.hidden = YES;
+    }];
+}
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Edit Views
+# pragma mark -
+/**************************************/
 
 @end

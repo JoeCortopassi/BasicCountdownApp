@@ -29,7 +29,8 @@
         [self.layer setShadowOffset:CGSizeMake(0, 0)];
         [self.layer setShadowRadius:1.0];
         [self.layer setShadowOpacity:1.0];
-        [self.layer setMasksToBounds:NO];
+        self.layer.shouldRasterize = YES;
+//        [self.layer setMasksToBounds:NO];
     }
     return self;
 }

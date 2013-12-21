@@ -42,6 +42,11 @@
 		734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF88B183F2F3E003513E8 /* MainViewController.m */; };
 		7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7383DCF1184C15C5009C21B0 /* CountdownViewController.m */; };
 		73A552181863DE8F0081E694 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73A552171863DE8F0081E694 /* FontAwesome.ttf */; };
+		73A5521C186500D70081E694 /* EditTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A5521B186500D70081E694 /* EditTitleView.m */; };
+		73A5521F186500FC0081E694 /* EditCountdownDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A5521E186500FC0081E694 /* EditCountdownDateView.m */; };
+		73A552221865011A0081E694 /* EditBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A552211865011A0081E694 /* EditBackgroundView.m */; };
+		73A552251865018B0081E694 /* FadeOutOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A552241865018B0081E694 /* FadeOutOverlayView.m */; };
+		73A5522818650A290081E694 /* EditPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A5522718650A290081E694 /* EditPagingView.m */; };
 		73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C11842E343003A5218 /* CountdownListViewController.m */; };
 		73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1C818431C53003A5218 /* CountdownTimerCell.m */; };
 		73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C7A1CB18431CA6003A5218 /* CountdownListHeaderCell.m */; };
@@ -118,6 +123,16 @@
 		7383DCF0184C15C5009C21B0 /* CountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownViewController.h; sourceTree = "<group>"; };
 		7383DCF1184C15C5009C21B0 /* CountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownViewController.m; sourceTree = "<group>"; };
 		73A552171863DE8F0081E694 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		73A5521A186500D70081E694 /* EditTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTitleView.h; sourceTree = "<group>"; };
+		73A5521B186500D70081E694 /* EditTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTitleView.m; sourceTree = "<group>"; };
+		73A5521D186500FC0081E694 /* EditCountdownDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCountdownDateView.h; sourceTree = "<group>"; };
+		73A5521E186500FC0081E694 /* EditCountdownDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCountdownDateView.m; sourceTree = "<group>"; };
+		73A552201865011A0081E694 /* EditBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditBackgroundView.h; sourceTree = "<group>"; };
+		73A552211865011A0081E694 /* EditBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditBackgroundView.m; sourceTree = "<group>"; };
+		73A552231865018B0081E694 /* FadeOutOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutOverlayView.h; sourceTree = "<group>"; };
+		73A552241865018B0081E694 /* FadeOutOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutOverlayView.m; sourceTree = "<group>"; };
+		73A5522618650A290081E694 /* EditPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPagingView.h; sourceTree = "<group>"; };
+		73A5522718650A290081E694 /* EditPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPagingView.m; sourceTree = "<group>"; };
 		73C7A1C01842E343003A5218 /* CountdownListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownListViewController.h; sourceTree = "<group>"; };
 		73C7A1C11842E343003A5218 /* CountdownListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownListViewController.m; sourceTree = "<group>"; };
 		73C7A1C718431C53003A5218 /* CountdownTimerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownTimerCell.h; sourceTree = "<group>"; };
@@ -194,6 +209,7 @@
 			children = (
 				730E052A185D17FC00DBEF2F /* EditCountdownViewController.h */,
 				730E052B185D17FC00DBEF2F /* EditCountdownViewController.m */,
+				73A552191864FEB20081E694 /* Editing sub views */,
 			);
 			name = "Add/Edit Views";
 			sourceTree = "<group>";
@@ -347,6 +363,23 @@
 			name = "Font Awesome";
 			sourceTree = "<group>";
 		};
+		73A552191864FEB20081E694 /* Editing sub views */ = {
+			isa = PBXGroup;
+			children = (
+				73A552231865018B0081E694 /* FadeOutOverlayView.h */,
+				73A552241865018B0081E694 /* FadeOutOverlayView.m */,
+				73A5522618650A290081E694 /* EditPagingView.h */,
+				73A5522718650A290081E694 /* EditPagingView.m */,
+				73A5521A186500D70081E694 /* EditTitleView.h */,
+				73A5521B186500D70081E694 /* EditTitleView.m */,
+				73A5521D186500FC0081E694 /* EditCountdownDateView.h */,
+				73A5521E186500FC0081E694 /* EditCountdownDateView.m */,
+				73A552201865011A0081E694 /* EditBackgroundView.h */,
+				73A552211865011A0081E694 /* EditBackgroundView.m */,
+			);
+			name = "Editing sub views";
+			sourceTree = "<group>";
+		};
 		73C7A1C31842E34A003A5218 /* CountdownList */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				731199151853D2B400018C30 /* TimerViewVertical.m in Sources */,
+				73A5521F186500FC0081E694 /* EditCountdownDateView.m in Sources */,
 				730E0518185977B100DBEF2F /* FMDatabase.m in Sources */,
 				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
 				7311990918528E3400018C30 /* LabelTitle.m in Sources */,
@@ -468,8 +502,10 @@
 				731199031852899E00018C30 /* LabelTimer.m in Sources */,
 				730E052C185D17FC00DBEF2F /* EditCountdownViewController.m in Sources */,
 				730E051D185977B100DBEF2F /* FMResultSet.m in Sources */,
+				73A5522818650A290081E694 /* EditPagingView.m in Sources */,
 				731199001852870500018C30 /* HelperTimer.m in Sources */,
 				7311990F1853D27900018C30 /* TimerViewBase.m in Sources */,
+				73A552221865011A0081E694 /* EditBackgroundView.m in Sources */,
 				73C7A1CC18431CA6003A5218 /* CountdownListHeaderCell.m in Sources */,
 				73C7A1C918431C53003A5218 /* CountdownTimerCell.m in Sources */,
 				73C7A1C21842E343003A5218 /* CountdownListViewController.m in Sources */,
@@ -477,11 +513,13 @@
 				734CF86C183F263F003513E8 /* AppDelegate.m in Sources */,
 				731198FC1852820E00018C30 /* ModelCountdown.m in Sources */,
 				731199121853D2A700018C30 /* TimerViewHorizontal.m in Sources */,
+				73A552251865018B0081E694 /* FadeOutOverlayView.m in Sources */,
 				73119906185289B000018C30 /* LabelDescription.m in Sources */,
 				734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */,
 				7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */,
 				734CF868183F263F003513E8 /* main.m in Sources */,
 				730E051B185977B100DBEF2F /* FMDatabaseQueue.m in Sources */,
+				73A5521C186500D70081E694 /* EditTitleView.m in Sources */,
 				731198F9185281AA00018C30 /* Model.m in Sources */,
 				730E0519185977B100DBEF2F /* FMDatabaseAdditions.m in Sources */,
 			);
