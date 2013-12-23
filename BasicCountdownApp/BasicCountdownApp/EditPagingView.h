@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DelegateEditCountdown.h"
+
+
+@class ObjectCountdown;
+
 
 @interface EditPagingView : UIScrollView
+@property (nonatomic, weak) id<DelegateEditCountdown> delegateEditCountdown;
 @property (nonatomic, strong) UIButton *buttonEditClose;
+@property (nonatomic, strong) ObjectCountdown *countdown;
 @end

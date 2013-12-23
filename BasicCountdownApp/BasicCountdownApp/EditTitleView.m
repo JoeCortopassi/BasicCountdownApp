@@ -7,7 +7,7 @@
 //
 
 #import "EditTitleView.h"
-
+#import "ObjectCountdown.h"
 
 
 @interface EditTitleView ()
@@ -71,9 +71,6 @@
     label.frame = CGRectMake(20, 60, self.frame.size.width - 40, 50);
     label.backgroundColor = [UIColor whiteColor];
     label.text = @"";
-    
-//    label.layer.borderColor = [UIColor darkGrayColor].CGColor;
-//    label.layer.borderWidth = 2;
     label.layer.cornerRadius = 5;
     label.clipsToBounds = YES;
     
@@ -87,6 +84,7 @@
                                        label.frame.origin.y + padding,
                                        label.frame.size.width - (padding*2),
                                        label.frame.size.height - (padding*2));
+    self.inputTitle.delegate = self;
     self.inputTitle.borderStyle = UITextBorderStyleNone;
     self.inputTitle.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:45.0f];
     self.inputTitle.adjustsFontSizeToFitWidth = YES;
@@ -107,5 +105,35 @@
     [self addSubview:self.buttonNext];
 }
 
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Setters
+# pragma mark -
+/**************************************/
+
+- (void) setCountdown:(ObjectCountdown *)newCountdown
+{
+    _countdown = newCountdown;
+    self.inputTitle.text = newCountdown.title;
+}
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark UITextField Delegate
+# pragma mark -
+/**************************************/
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    self.countdown.title = textField.text;
+    self.delegateEditCountdown.countdown = self.countdown;
+}
 
 @end

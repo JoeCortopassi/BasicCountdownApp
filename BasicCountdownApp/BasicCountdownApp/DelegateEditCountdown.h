@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol DelegateEditCountdown <NSObject>
 
+@class ObjectCountdown;
+
+
+@protocol DelegateEditCountdown <NSObject>
+@property (nonatomic, strong) ObjectCountdown *countdown;
 @end

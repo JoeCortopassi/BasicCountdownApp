@@ -26,9 +26,9 @@
 
 @implementation EditPagingView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         self.frame = [[UIScreen mainScreen] bounds];
         self.contentSize = CGSizeMake(self.frame.size.width*3, self.frame.size.height);
@@ -65,6 +65,8 @@
     self.viewEditTitle.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.viewEditTitle.buttonNext addTarget:self action:@selector(pageTitleToDate) forControlEvents:UIControlEventTouchUpInside];
     [self.viewEditTitle.buttonNext addTarget:self action:@selector(buttonPressedCloseEdit) forControlEvents:UIControlEventTouchUpInside];
+    self.viewEditTitle.countdown = self.countdown;
+    self.viewEditTitle.delegateEditCountdown = self.delegateEditCountdown;
     
     [self addSubview:self.viewEditTitle];
 }
@@ -76,6 +78,9 @@
     self.viewEditCountdownDate.center = CGPointMake(self.frame.size.width + (self.frame.size.width/2), self.frame.size.height/2);
     [self.viewEditCountdownDate.buttonPrevious addTarget:self action:@selector(pageDateToTitle) forControlEvents:UIControlEventTouchUpInside];
     [self.viewEditCountdownDate.buttonNext addTarget:self action:@selector(pageDateToBackground) forControlEvents:UIControlEventTouchUpInside];
+    self.viewEditCountdownDate.countdown = self.countdown;
+    self.viewEditCountdownDate.delegateEditCountdown = self.delegateEditCountdown;
+    
     
     [self addSubview:self.viewEditCountdownDate];
 }
@@ -86,16 +91,38 @@
     self.viewEditBackground = [[EditBackgroundView alloc] init];
     self.viewEditBackground.center = CGPointMake((self.frame.size.width*2) + (self.frame.size.width/2), self.frame.size.height/2);
     [self.viewEditBackground.buttonPrevious addTarget:self action:@selector(pageBackgroundToDate) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewEditBackground.buttonDone addTarget:self action:@selector(buttonPressedDone) forControlEvents:UIControlEventTouchUpInside];
+    self.viewEditBackground.countdown = self.countdown;
+    self.viewEditBackground.delegateEditCountdown = self.delegateEditCountdown;
+    
     
     [self addSubview:self.viewEditBackground];
 }
 
 
 
-- (void) buttonPressedCloseEdit
+/**************************************/
+# pragma mark -
+# pragma mark Setters
+# pragma mark -
+/**************************************/
+
+- (void) setCountdown:(ObjectCountdown *)newCountdown
 {
-    [self endEditing:YES];
+    _countdown = newCountdown;
+    self.viewEditTitle.countdown = newCountdown;
+    self.viewEditCountdownDate.countdown = newCountdown;
 }
+
+
+- (void) setDelegateEditCountdown:(id<DelegateEditCountdown>)newDelegateEditCountdown
+{
+    _delegateEditCountdown = newDelegateEditCountdown;
+    self.viewEditTitle.delegateEditCountdown = newDelegateEditCountdown;
+    self.viewEditCountdownDate.delegateEditCountdown = newDelegateEditCountdown;
+    self.viewEditBackground.delegateEditCountdown = newDelegateEditCountdown;
+}
+
 
 
 
@@ -136,5 +163,24 @@
     }];
 }
 
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Button Actions
+# pragma mark -
+/**************************************/
+- (void) buttonPressedDone
+{
+    [self.buttonEditClose sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void) buttonPressedCloseEdit
+{
+    [self endEditing:YES];
+}
 
 @end

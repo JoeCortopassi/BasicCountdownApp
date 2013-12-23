@@ -84,10 +84,14 @@
 - (void) setupButtonDone
 {
     self.buttonDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonDone.frame = CGRectMake(self.frame.size.width - 80, self.frame.size.height - 70, 70, 50);
+    self.buttonDone.frame = CGRectMake(self.frame.size.width - 95, self.frame.size.height - 68, 70, 40);
     self.buttonDone.titleLabel.textColor = [UIColor whiteColor];
-    [self.buttonDone.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
+    [self.buttonDone.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [self.buttonDone setTitle:@"Done" forState:UIControlStateNormal];
+    self.buttonDone.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.buttonDone.layer.borderWidth = 3;
+    self.buttonDone.layer.cornerRadius = 5;
+    self.buttonDone.clipsToBounds = YES;
     
     
     [self addSubview:self.buttonDone];

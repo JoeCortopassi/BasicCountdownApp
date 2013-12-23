@@ -142,6 +142,7 @@
 		73C7A1C818431C53003A5218 /* CountdownTimerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownTimerCell.m; sourceTree = "<group>"; };
 		73C7A1CA18431CA6003A5218 /* CountdownListHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownListHeaderCell.h; sourceTree = "<group>"; };
 		73C7A1CB18431CA6003A5218 /* CountdownListHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownListHeaderCell.m; sourceTree = "<group>"; };
+		73E4EFDF1868FABF000B0A76 /* DelegateEditCountdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateEditCountdown.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				731198F4185247F500018C30 /* DelegateSubView.h */,
+				73E4EFDF1868FABF000B0A76 /* DelegateEditCountdown.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

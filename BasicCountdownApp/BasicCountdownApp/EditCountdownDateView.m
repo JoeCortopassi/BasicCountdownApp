@@ -7,6 +7,7 @@
 //
 
 #import "EditCountdownDateView.h"
+#import "ObjectCountdown.h"
 
 
 
@@ -71,6 +72,7 @@
     self.datePicker = [[UIDatePicker alloc] init];
     self.datePicker.frame = CGRectMake(25, 60, self.frame.size.width-50, 0);
     self.datePicker.datePickerMode = UIDatePickerModeDate;
+    [self.datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     
     
     UILabel *label = [[UILabel alloc] init];
@@ -115,5 +117,35 @@
     
     [self addSubview:self.buttonNext];
 }
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Setters
+# pragma mark -
+/**************************************/
+- (void) setCountdown:(ObjectCountdown *)newCountdown
+{
+    _countdown = newCountdown;
+    (newCountdown)? [self.datePicker setDate:newCountdown.dateOfEvent]: nil;
+}
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Actions
+# pragma mark -
+/**************************************/
+
+- (void) dateChanged:(UIDatePicker *)sender
+{
+    self.countdown.dateOfEvent = [sender date];
+    self.delegateEditCountdown.countdown = self.countdown;
+}
+
 
 @end

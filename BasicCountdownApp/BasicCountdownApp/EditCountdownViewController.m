@@ -11,6 +11,7 @@
 #import "ObjectCountdown.h"
 #import "TimerViewHorizontal.h"
 #import "HelperTimer.h"
+#import "HelperDate.h"
 #import "FadeOutOverlayView.h"
 #import "EditPagingView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -37,12 +38,14 @@
 
 @implementation EditCountdownViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self = [super init])
+    {
         // Custom initialization
+        [self setupCountdown];
     }
+    
     return self;
 }
 
@@ -75,6 +78,15 @@
 # pragma mark Setup Methods
 # pragma mark -
 /**************************************/
+- (void) setupCountdown
+{
+    ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
+    countdown.title = @"New Countdown";
+    countdown.dateOfEvent = [HelperDate getDateTomorrow];
+    
+    self.countdown = countdown;
+}
+
 
 - (void) setupViewFadeOutOverlay
 {
@@ -95,8 +107,11 @@
 - (void) setupViewEditPaging
 {
     self.viewEditPaging = [[EditPagingView alloc] init];
+    self.viewEditPaging.delegateEditCountdown = self;
     self.viewEditPaging.hidden = YES;
     self.viewEditPaging.alpha = 0.0;
+    self.viewEditPaging.countdown = self.countdown;
+    
     
     [self.view addSubview:self.viewEditPaging];
 }
@@ -120,7 +135,7 @@
 - (void) setupButtonEdit
 {
     self.buttonEdit = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonEdit.frame = CGRectMake(0, self.view.frame.size.height - 70, 70, 70);
+    self.buttonEdit.frame = CGRectMake(self.view.frame.size.width-120, 22, 60, 70);
 //    self.buttonEdit.backgroundColor = [UIColor orangeColor];
     [self.buttonEdit setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.buttonEdit.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:35.0f]];
@@ -135,7 +150,8 @@
 - (void) setupButtonSave
 {
     self.buttonSave = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonSave.frame = CGRectMake(self.view.frame.size.width-70, self.view.frame.size.height - 70, 70, 70);
+//    self.buttonSave.frame = CGRectMake(self.view.frame.size.width-70, self.view.frame.size.height - 70, 70, 70);
+    self.buttonSave.frame = CGRectMake(self.view.frame.size.width-60, 22, 60, 70);
     //    self.buttonSave.backgroundColor = [UIColor orangeColor];
     [self.buttonSave setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.buttonSave.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:35.0f]];
@@ -203,6 +219,21 @@
 }
 
 
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Setters
+# pragma mark -
+/**************************************/
+- (void) setCountdown:(ObjectCountdown *)newCountdown
+{
+    _countdown = newCountdown;
+    self.viewEditPaging.countdown = newCountdown;
+    self.labelTitle.text = newCountdown.title;
+    self.labelCountdownDate.text = [HelperTimer stringFromDate:newCountdown.dateOfEvent];
+    self.viewTimer.date = newCountdown.dateOfEvent;
+}
 
 
 

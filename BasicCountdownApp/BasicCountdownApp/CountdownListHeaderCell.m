@@ -59,12 +59,8 @@
 
 - (void) buttonPressedNewCountdown
 {
-    ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
-    countdown.title = @"New Countdown";
-    countdown.dateOfEvent = [HelperDate getDateTomorrow];
-    
     EditCountdownViewController *editCountdownVC = [[EditCountdownViewController alloc] init];
-    editCountdownVC.countdown = countdown;
+    
     [self.delegateSubView pushViewController:editCountdownVC animated:YES];
 }
 @end
