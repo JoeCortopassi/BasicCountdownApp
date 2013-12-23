@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EditTitleView : UIView
-
+@property (nonatomic, strong) UIButton *buttonNext;
 @end

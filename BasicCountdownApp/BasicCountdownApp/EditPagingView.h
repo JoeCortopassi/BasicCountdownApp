@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EditPagingView : UIScrollView
-
+@property (nonatomic, strong) UIButton *buttonEditClose;
 @end

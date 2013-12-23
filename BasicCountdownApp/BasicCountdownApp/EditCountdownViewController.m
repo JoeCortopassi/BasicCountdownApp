@@ -28,7 +28,6 @@
 @property (nonatomic, strong) NSTimer *timerRefresh;
 // Edit views
 @property (nonatomic, strong) FadeOutOverlayView *viewFadeOutOverlay;
-@property (nonatomic, strong) UIButton *buttonEditClose;
 @property (nonatomic, strong) EditPagingView *viewEditPaging;
 @end
 
@@ -63,8 +62,8 @@
     [self setupButtonSave];
     
     [self setupViewFadeOutOverlay];
-    [self setupButtonCloseEdit];
     [self setupViewEditPaging];
+    [self setupButtonCloseEdit];
 }
 
 
@@ -89,14 +88,7 @@
 
 - (void) setupButtonCloseEdit
 {
-    self.buttonEditClose = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonEditClose.frame = self.view.frame;
-    self.buttonEditClose.backgroundColor = [UIColor clearColor];
-    [self.buttonEditClose setTitle:@"" forState:UIControlStateNormal];
-    [self.buttonEditClose addTarget:self action:@selector(buttonPressedEditClose) forControlEvents:UIControlEventTouchUpInside];
-    self.buttonEditClose.hidden = YES;
-    
-    [self.view addSubview:self.buttonEditClose];
+    [self.viewEditPaging.buttonEditClose addTarget:self action:@selector(buttonPressedEditClose) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -228,14 +220,15 @@
 
 - (void) buttonPressedEdit
 {
-    [UIView animateWithDuration:0.5 animations:^(void){
+    [UIView animateWithDuration:0.3 animations:^(void){
         self.viewFadeOutOverlay.hidden = NO;
         self.viewFadeOutOverlay.alpha = self.viewFadeOutOverlay.opacity;
         
-        self.buttonEditClose.hidden = NO;
+        self.viewEditPaging.buttonEditClose.hidden = NO;
         
         self.viewEditPaging.hidden = NO;
         self.viewEditPaging.alpha = 1.0;
+        
     }];
 }
 
@@ -248,13 +241,14 @@
 
 - (void) buttonPressedEditClose
 {
-    [UIView animateWithDuration:0.5 animations:^(void){
+    [UIView animateWithDuration:0.3 animations:^(void){
         self.viewFadeOutOverlay.alpha = 0.0;
         self.viewEditPaging.alpha = 0.0;
     } completion:^(BOOL finished){
         self.viewFadeOutOverlay.hidden = YES;
-        self.buttonEditClose.hidden = YES;
+        self.viewEditPaging.buttonEditClose.hidden = YES;
         self.viewEditPaging.hidden = YES;
+        self.viewEditPaging.contentOffset = CGPointMake(0, 0);
     }];
 }
 

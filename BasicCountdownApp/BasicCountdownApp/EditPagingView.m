@@ -33,8 +33,10 @@
         self.frame = [[UIScreen mainScreen] bounds];
         self.contentSize = CGSizeMake(self.frame.size.width*3, self.frame.size.height);
         self.backgroundColor = [UIColor clearColor];
+        self.scrollEnabled = NO;
         self.pagingEnabled = YES;
         
+        [self setupButtonCloseEdit];
         [self setupViewEditTitle];
         [self setupViewEditCountdownDate];
         [self setupViewEditBackground];
@@ -43,10 +45,24 @@
 }
 
 
+- (void) setupButtonCloseEdit
+{
+    self.buttonEditClose = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.buttonEditClose.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
+    self.buttonEditClose.backgroundColor = [UIColor clearColor];
+    [self.buttonEditClose setTitle:@"" forState:UIControlStateNormal];
+    
+    self.buttonEditClose.hidden = YES;
+    
+    [self addSubview:self.buttonEditClose];
+}
+
+
 - (void) setupViewEditTitle
 {
     self.viewEditTitle = [[EditTitleView alloc] init];
     self.viewEditTitle.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    [self.viewEditTitle.buttonNext addTarget:self action:@selector(pageTitleToDate) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.viewEditTitle];
 }
@@ -68,5 +84,29 @@
     
     [self addSubview:self.viewEditBackground];
 }
+
+
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark SubView Paging Actions
+# pragma mark -
+/**************************************/
+- (void) pageTitleToDate
+{
+    [UIView animateWithDuration:0.5 animations:^(void){
+        self.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width, 0);
+    }];
+}
+
+
+- (void) pageDateToTitle
+{
+    self.contentOffset = CGPointMake(0, 0);
+}
+
 
 @end
