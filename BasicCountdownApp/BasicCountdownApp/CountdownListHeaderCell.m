@@ -45,7 +45,7 @@
 - (void) setupButtonNewCountdown
 {
     self.buttonNewCountdown = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.buttonNewCountdown.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 75, 0, 75, 75);
+    self.buttonNewCountdown.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 70, 0, 75, 60);
     [self.buttonNewCountdown.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:45.0f]];
     [self.buttonNewCountdown.titleLabel setTextColor:[UIColor whiteColor]];
     [self.buttonNewCountdown setTitle:@"\uf196" forState:UIControlStateNormal];

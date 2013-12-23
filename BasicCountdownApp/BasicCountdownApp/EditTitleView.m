@@ -41,7 +41,7 @@
 {
     UIView *background = [[UIView alloc] init];
     background.frame = self.frame;
-    background.backgroundColor = [UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];//[UIColor whiteColor];
+    background.backgroundColor = [UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
     background.layer.cornerRadius = 5;
     background.clipsToBounds = YES;
     [self addSubview:background];

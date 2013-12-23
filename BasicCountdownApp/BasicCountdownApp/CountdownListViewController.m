@@ -237,7 +237,7 @@
 {
     if (indexPath.row == 0)
     {
-        return 70;
+        return 60;
     }
     else
     {

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EditCountdownDateView : UIView
-
+@property (nonatomic, strong) UIButton *buttonPrevious;
+@property (nonatomic, strong) UIButton *buttonNext;
 @end

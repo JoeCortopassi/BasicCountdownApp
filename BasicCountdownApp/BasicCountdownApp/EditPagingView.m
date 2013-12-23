@@ -72,6 +72,7 @@
 {
     self.viewEditCountdownDate = [[EditCountdownDateView alloc] init];
     self.viewEditCountdownDate.center = CGPointMake(self.frame.size.width + (self.frame.size.width/2), self.frame.size.height/2);
+    [self.viewEditCountdownDate.buttonPrevious addTarget:self action:@selector(pageDateToTitle) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.viewEditCountdownDate];
 }
@@ -105,7 +106,23 @@
 
 - (void) pageDateToTitle
 {
-    self.contentOffset = CGPointMake(0, 0);
+    [UIView animateWithDuration:0.5 animations:^(void){
+        self.contentOffset = CGPointMake(0, 0);
+    }];
+}
+
+
+- (void) pageDateToBackground
+{
+    [UIView animateWithDuration:0.5 animations:^(void){
+        self.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width * 2, 0);
+    }];
+}
+
+
+- (void) pageBackgroundToDate
+{
+    self.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width, 0);
 }
 
 
