@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EditBackgroundView : UIView
-
+@property (nonatomic, strong) UIButton *buttonPrevious;
+@property (nonatomic, strong) UIButton *buttonDone;
 @end

@@ -55,7 +55,7 @@
 - (void) setupLabelTitle
 {
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(20, 20, self.frame.size.width, 30);
+    label.frame = CGRectMake(23, 20, self.frame.size.width, 30);
     label.backgroundColor = [UIColor clearColor];
     label.text = @"Title";
     label.textColor = [UIColor whiteColor];
@@ -72,8 +72,8 @@
     label.backgroundColor = [UIColor whiteColor];
     label.text = @"";
     
-    label.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    label.layer.borderWidth = 2;
+//    label.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//    label.layer.borderWidth = 2;
     label.layer.cornerRadius = 5;
     label.clipsToBounds = YES;
     

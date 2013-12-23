@@ -40,6 +40,7 @@
 		734CF87F183F2640003513E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 734CF87D183F2640003513E8 /* InfoPlist.strings */; };
 		734CF881183F2640003513E8 /* BasicCountdownAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF880183F2640003513E8 /* BasicCountdownAppTests.m */; };
 		734CF88C183F2F3E003513E8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CF88B183F2F3E003513E8 /* MainViewController.m */; };
+		734DB7ED1868B1E100FA1974 /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 734DB7EC1868B1E100FA1974 /* ColorPickerView.m */; };
 		7383DCF2184C15C5009C21B0 /* CountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7383DCF1184C15C5009C21B0 /* CountdownViewController.m */; };
 		73A552181863DE8F0081E694 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73A552171863DE8F0081E694 /* FontAwesome.ttf */; };
 		73A5521C186500D70081E694 /* EditTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A5521B186500D70081E694 /* EditTitleView.m */; };
@@ -120,6 +121,8 @@
 		734CF880183F2640003513E8 /* BasicCountdownAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicCountdownAppTests.m; sourceTree = "<group>"; };
 		734CF88A183F2F3E003513E8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		734CF88B183F2F3E003513E8 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		734DB7EB1868B1E100FA1974 /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
+		734DB7EC1868B1E100FA1974 /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
 		7383DCF0184C15C5009C21B0 /* CountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownViewController.h; sourceTree = "<group>"; };
 		7383DCF1184C15C5009C21B0 /* CountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownViewController.m; sourceTree = "<group>"; };
 		73A552171863DE8F0081E694 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				73A5521E186500FC0081E694 /* EditCountdownDateView.m */,
 				73A552201865011A0081E694 /* EditBackgroundView.h */,
 				73A552211865011A0081E694 /* EditBackgroundView.m */,
+				734DB7EB1868B1E100FA1974 /* ColorPickerView.h */,
+				734DB7EC1868B1E100FA1974 /* ColorPickerView.m */,
 			);
 			name = "Editing sub views";
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				730E0518185977B100DBEF2F /* FMDatabase.m in Sources */,
 				730226EB184E4D2800F19D5C /* ObjectTimer.m in Sources */,
 				7311990918528E3400018C30 /* LabelTitle.m in Sources */,
+				734DB7ED1868B1E100FA1974 /* ColorPickerView.m in Sources */,
 				730E051A185977B100DBEF2F /* FMDatabasePool.m in Sources */,
 				730E0528185A27DD00DBEF2F /* HelperDate.m in Sources */,
 				731199031852899E00018C30 /* LabelTimer.m in Sources */,
