@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ObjectCountdown : NSObject
-@property (nonatomic, assign) int *countdownId;
+@property (nonatomic, assign) int countdownId;
 @property (nonatomic, strong) NSDate *dateOfEvent;
 @property (nonatomic, strong) NSString *imageBackgroundFileName;
 @property (nonatomic, strong) NSString *title;

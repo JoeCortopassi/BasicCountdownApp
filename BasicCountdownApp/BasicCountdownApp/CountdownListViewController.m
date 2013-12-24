@@ -30,22 +30,36 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.tableView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:(73.0f/255.0f) green:(170.0f/255.0f) blue:(238.0f/255.0f) alpha:1.0f];
+        self.navigationController.delegate = self;
+        self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.frame = [[UIScreen mainScreen] applicationFrame];
         
         self.model = [[Model alloc] init];
         [self loadCountdownsFromModel];
         
         [self.tableView setEditing:YES];
-//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+        {
             CGFloat topBarOffset = 22;
             self.tableView.frame = CGRectMake(0,
                                               topBarOffset,
                                               self.tableView.frame.size.width,
                                               self.tableView.frame.size.height);
         }
+        
+        
+        
+        {
+            ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
+            countdown.title = @"Foo Bar";
+            countdown.dateOfEvent = [NSDate date];
+            //[self.model.countdown addNewCountdown:countdown];
+            
+            NSArray *foo = [self.model.countdown getAllCountdowns];
+            NSLog(@"~~ %@", foo);
+        }
+
         
         
         self.tableView.delegate = self;
@@ -72,7 +86,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void) viewDidAppear:(BOOL)animated
+{
+    
+}
+- (void) viewWillDisappear:(BOOL)animated
+{
+    
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -109,13 +135,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.arrayCountdowns count];
+    NSLog(@"Object Count: %i", [self.arrayCountdowns count]);
+    return [self.arrayCountdowns count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    
+    NSLog(@"index: %i", indexPath.row);
     
     if (indexPath.row == 0)
     {
@@ -129,7 +156,7 @@
         }
         
         [(CountdownListHeaderCell *)cell setDelegateSubView:self];
-        
+        [(CountdownListHeaderCell *)cell setModel:self.model];
     }
     else
     {
@@ -261,6 +288,20 @@
 - (void) popViewController
 {
     [self.delegateSubView popViewController];
+}
+
+
+
+
+
+/**************************************/
+# pragma mark -
+# pragma mark Navigation Controller Delegates
+# pragma mark -
+/**************************************/
+- (void) navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 @end

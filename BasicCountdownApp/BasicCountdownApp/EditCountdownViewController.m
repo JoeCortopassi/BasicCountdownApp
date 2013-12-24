@@ -8,6 +8,7 @@
 
 #import "EditCountdownViewController.h"
 #import "LabelTitle.h"
+#import "Model.h"
 #import "ObjectCountdown.h"
 #import "TimerViewHorizontal.h"
 #import "HelperTimer.h"
@@ -266,7 +267,17 @@
 
 - (void) buttonPressedSave
 {
+    [self.model.countdown addNewCountdown:self.countdown];
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Countdown Saved"
+                                                    message:@"Your new countdown has been saved!"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

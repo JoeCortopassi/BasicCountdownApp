@@ -143,6 +143,7 @@
 		73C7A1CA18431CA6003A5218 /* CountdownListHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountdownListHeaderCell.h; sourceTree = "<group>"; };
 		73C7A1CB18431CA6003A5218 /* CountdownListHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountdownListHeaderCell.m; sourceTree = "<group>"; };
 		73E4EFDF1868FABF000B0A76 /* DelegateEditCountdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateEditCountdown.h; sourceTree = "<group>"; };
+		73E4EFE018692F9A000B0A76 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +302,7 @@
 		734CF85A183F263F003513E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73E4EFE018692F9A000B0A76 /* libsqlite3.dylib */,
 				730E0521185A180400DBEF2F /* QuartzCore.framework */,
 				730E051F185A17FC00DBEF2F /* libsqlite3.0.dylib */,
 				734CF85B183F263F003513E8 /* Foundation.framework */,

@@ -13,6 +13,7 @@
 
 @interface ModelCountdown : NSObject
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
+- (void) setupTable;
 - (NSArray *) getAllCountdowns;
 - (int) addNewCountdown:(ObjectCountdown *)newCountdown;
 - (void) editCountdown:(ObjectCountdown *)countdown;

@@ -25,8 +25,11 @@
     if ((self = [super init]))
     {
         [self setupDatabase];
+        
+        
         self.countdown = [[ModelCountdown alloc] init];
         self.countdown.databaseQueue = self.databaseQueue;
+        [self.countdown setupTable];
     }
     
     
@@ -39,6 +42,6 @@
     NSString *docsPath = [paths objectAtIndex:0];
     NSString *path = [docsPath stringByAppendingPathComponent:@"database.sqlite"];
     
-    self.databaseQueue = [FMDatabaseQueue databaseQueueWithPath:path];
+    self.databaseQueue = [[FMDatabaseQueue alloc] initWithPath:path];
 }
 @end

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DelegateEditCountdown.h"
 
-@class ObjectCountdown;
+@class ObjectCountdown, Model;
+
 
 @interface EditCountdownViewController : UIViewController <DelegateEditCountdown>
+@property (nonatomic, strong) Model *model;
 @property (nonatomic, strong) ObjectCountdown *countdown;
 @end

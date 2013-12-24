@@ -10,8 +10,11 @@
 #import "DelegateSubView.h"
 
 
+@class Model;
+
 
 
 @interface CountdownListHeaderCell : UITableViewCell <DelegateSubView>
 @property (nonatomic, weak) id<DelegateSubView> delegateSubView;
+@property (nonatomic, strong) Model *model;
 @end

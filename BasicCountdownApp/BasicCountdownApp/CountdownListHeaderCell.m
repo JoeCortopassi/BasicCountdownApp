@@ -60,6 +60,7 @@
 - (void) buttonPressedNewCountdown
 {
     EditCountdownViewController *editCountdownVC = [[EditCountdownViewController alloc] init];
+    editCountdownVC.model = self.model;
     
     [self.delegateSubView pushViewController:editCountdownVC animated:YES];
 }
