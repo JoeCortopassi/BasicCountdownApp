@@ -30,6 +30,13 @@
     return self;
 }
 
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.viewCountdownList refreshTable];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,6 +54,7 @@
 {
     self.viewCountdownList = [[CountdownListViewController alloc] init];
     self.viewCountdownList.delegateSubView = self;
+    
     [self.view addSubview:self.viewCountdownList.tableView];
 }
 

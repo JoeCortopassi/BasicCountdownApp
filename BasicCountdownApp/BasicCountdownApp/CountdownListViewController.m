@@ -30,7 +30,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.navigationController.delegate = self;
         self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.frame = [[UIScreen mainScreen] applicationFrame];
         
@@ -47,19 +46,6 @@
                                               self.tableView.frame.size.width,
                                               self.tableView.frame.size.height);
         }
-        
-        
-        
-        {
-            ObjectCountdown *countdown = [[ObjectCountdown alloc] init];
-            countdown.title = @"Foo Bar";
-            countdown.dateOfEvent = [NSDate date];
-            //[self.model.countdown addNewCountdown:countdown];
-            
-            NSArray *foo = [self.model.countdown getAllCountdowns];
-            NSLog(@"~~ %@", foo);
-        }
-
         
         
         self.tableView.delegate = self;
@@ -81,24 +67,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
+
+
+- (void) refreshTable
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void) viewDidAppear:(BOOL)animated
-{
-    
-}
-- (void) viewWillDisappear:(BOOL)animated
-{
-    
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    self.arrayCountdowns = [self.model.countdown getAllCountdowns];
     [self.tableView reloadData];
 }
+
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -120,6 +97,9 @@
 
 
 
+
+
+
 /**************************************/
 # pragma mark -
 # pragma mark Table view data source
@@ -135,14 +115,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"Object Count: %i", [self.arrayCountdowns count]);
     return [self.arrayCountdowns count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    NSLog(@"index: %i", indexPath.row);
     
     if (indexPath.row == 0)
     {
@@ -294,14 +272,6 @@
 
 
 
-/**************************************/
-# pragma mark -
-# pragma mark Navigation Controller Delegates
-# pragma mark -
-/**************************************/
-- (void) navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [self.tableView reloadData];
-}
+
 
 @end

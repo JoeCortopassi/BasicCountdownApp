@@ -112,7 +112,7 @@ NSString * const standardDateFormat = @"yyyy-MM-dd HH:mm:ss";
 - (void) editCountdown:(ObjectCountdown *)countdown
 {
     [self.databaseQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"UPDATE countdown SET dateOfEvent=?, imageBackgroundFileName=?, title=? WHERE countdownId=? LIMIT 1", countdown.dateOfEvent, countdown.imageBackgroundFileName, countdown.title, countdown.countdownId];
+        [db executeUpdate:@"UPDATE countdown SET dateOfEvent=?, imageBackgroundFileName=?, title=? WHERE countdownId=? LIMIT 1", countdown.dateOfEvent, countdown.imageBackgroundFileName, countdown.title, [NSNumber numberWithInt:countdown.countdownId]];
     }];
 }
 
@@ -120,7 +120,7 @@ NSString * const standardDateFormat = @"yyyy-MM-dd HH:mm:ss";
 - (void) deleteCountdown:(ObjectCountdown *)countdown
 {
     [self.databaseQueue inDatabase:^(FMDatabase *db) {
-        [db executeUpdate:@"DELETE FROM countdown WHERE countdownId=? LIMIT 1", countdown.countdownId];
+        [db executeUpdate:@"DELETE FROM countdown WHERE countdownId=?", [NSNumber numberWithInt:countdown.countdownId]];
     }];
 }
 @end

@@ -33,6 +33,8 @@
     return self;
 }
 
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -51,6 +53,8 @@
     [self.buttonNewCountdown setTitle:@"\uf196" forState:UIControlStateNormal];
     [self.buttonNewCountdown setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self.buttonNewCountdown addTarget:self action:@selector(buttonPressedNewCountdown) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [self addSubview:self.buttonNewCountdown];
 }
 

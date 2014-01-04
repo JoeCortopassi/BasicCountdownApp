@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DelegateSubView.h"
 
-@interface CountdownListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, DelegateSubView, UINavigationControllerDelegate>
+@interface CountdownListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, DelegateSubView>
 @property (nonatomic, weak) id<DelegateSubView> delegateSubView;
 - (void) pushViewController:(UIViewController *)vc animated:(BOOL)isAnimated;
-- (void) navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (void) refreshTable;
 @end
